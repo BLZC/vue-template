@@ -5,12 +5,17 @@ let blog = [
   {
     path: '/userManage',
     name: 'userManage',
-    component: () => import('../../views/blog/usermanage/usermanage.vue')
+    component: () => import('../../views/blog/userManage')
   },
   {
     path: '/articleManage',
     name: 'articleManage',
-    component: () => import('../../views/blog/articleManage/articleManage.vue')
+    component: () => import('../../views/blog/articleManage')
+  },
+  {
+    path: '/commentManage',
+    name: 'commentManage',
+    component: () => import('../../views/blog/commentManage')
   }
 ]
 export { blog }

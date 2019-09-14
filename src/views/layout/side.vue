@@ -4,11 +4,11 @@
               :class="{hideClass: isCollapse }">
       <el-collapse-transition>
         <el-menu default-active=1
+                 unique-opened
                  class="el-menu-vertical-demo"
                  background-color="transparent"
                  text-color="#fff"
                  :collapse="isCollapse"
-                 router
                  active-text-color="#ffd04b">
           <div class="sildLogo">
             {{text}}
@@ -25,7 +25,6 @@
                   <el-menu-item v-for="vitem in item.children"
                                 :key="vitem.id"
                                 :index="item.id+'-'+vitem.id"
-                                :route="{'path': vitem.path}"
                                 @click="addTabs(vitem)">
                     <template slot="title">{{vitem.name}}</template>
                   </el-menu-item>
@@ -35,7 +34,6 @@
             <template v-else>
               <el-menu-item :index="item.id.toString()"
                             :key="item.id"
-                            :route="{'path': item.path}"
                             @click="addTabs(item)">
                 <i :class="item.icon"></i>
                 <span slot="title">{{item.name}}</span>
@@ -103,16 +101,19 @@ export default {
             {
               id: 9,
               name: '评论管理',
-              path: '/plManage',
+              path: '/commentManage',
               icon: ''
-            }
+            },
+            {
+              id: 10,
+              name: '404',
+              path: '/404',
+              icon: ''
+            },
           ]
         }
       ]
     }
-  },
-  mounted () {
-
   },
   computed: {
     //是否收缩左侧菜单
@@ -122,13 +123,31 @@ export default {
     //logo文字
     text () {
       return this.$store.state.home.text
+    },
+    canAdd () {
+      return this.$store.state.home.canAdd
+    },
+    tabs () {
+      return this.$store.state.home.tabs
     }
   },
   methods: {
     //添加标签
     addTabs (item) {
-      this.$store.commit('addTabs', item)
-      this.$store.commit('selectTab', item)
+      let JS = JSON.stringify
+      if (JS(this.tabs).indexOf(JS(item)) === -1) {
+        if (this.canAdd) {
+          this.$store.commit('addTabs', item)
+          this.$store.commit('selectTab', item)
+          this.$router.push(item.path)
+        } else {
+          this.$LZCMessage('你打开的标签太多了，请关闭一些不用的标签后再尝试打开', 'warning')
+        }
+      } else {
+        this.$store.commit('addTabs', item)
+        this.$store.commit('selectTab', item)
+        this.$router.push(item.path)
+      }
     }
   }
 }

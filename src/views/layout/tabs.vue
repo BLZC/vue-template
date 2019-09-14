@@ -1,6 +1,11 @@
+<!-- Tabs组件 -->
 <template>
-  <div class="tabs">
+  <div class="tabs"
+       id="tabs"
+       ref="tabs">
     <div class="tab_item"
+         ref="tab_item"
+         id="tab_item"
          v-for="item in tabs"
          :key="item.id"
          :class="{Sclass: selectTab.name === item.name}"
@@ -35,17 +40,24 @@ export default {
     return {}
   },
   computed: {
+    /* 所有已经打开的标签 */
     tabs () {
       return this.$store.state.home.tabs
     },
+    /* 当前选中的标签 */
     selectTab () {
       return this.$store.state.home.selectTab
-
     }
   },
   mounted () {
+    this.Init()
   },
   methods: {
+    //计算tabs宽度
+    Init () {
+      let len = this.$refs.tabs.scrollWidth
+      this.$store.commit('hasWidth', len)
+    },
     //关闭标签
     closeTab (value) {
       this.$store.commit('closeTab', value)
@@ -76,6 +88,11 @@ export default {
     //关闭全部标签
     closeAll () {
       this.$store.commit('closeAll')
+      let len = this.tabs.length
+      if (len) {
+        let item = this.tabs[len - 1]
+        this.switchTab(item)
+      }
     }
   }
 }

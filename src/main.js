@@ -11,6 +11,7 @@ Vue.prototype.$get = get
 Vue.prototype.$post = post
 Vue.prototype.$LZCMessage = LZCMessage
 Vue.use(ElementUI)
+
 new Vue({
   router,
   store,

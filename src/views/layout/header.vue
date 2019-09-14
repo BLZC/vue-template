@@ -13,25 +13,41 @@
         </el-tooltip>
       </el-col>
       <el-col :span="2"
-              :offset="17"
+              :offset="16"
               class="message">
-        <el-badge :value="12"
+        <el-badge :value="3"
                   style="cursor:pointer"
                   class="item">
-          <i class="iconfont iconxiaoxi hicon"></i>
+
+          <el-dropdown size="small"
+                       :hide-timeout='hideTimeout'
+                       style="cursor:pointer"
+                       placement="bottom">
+            <span class="el-dropdown-link">
+              <i class="iconfont iconxiaoxi hicon"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item v-for="item in warnMsg"
+                                :key="item.id">{{item.text}}</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </el-badge>
       </el-col>
-      <el-col :span="2"
+      <el-col :span="3"
               class="information">
         <el-dropdown size="small"
+                     :hide-timeout='hideTimeout'
                      style="cursor:pointer"
+                     @command="handClick"
                      placement="bottom">
           <span class="el-dropdown-link">
-            <i class="iconfont iconxiugaitouxiang hicon"></i>
+            <!-- <i class="iconfont iconxiugaitouxiang hicon"></i> -->
+            <span class="userMsg">你好&nbsp;&nbsp;{{username}}&nbsp;&nbsp;</span>
+            <i class="iconfont iconxiala hicon"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看个人信息</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item command="a">查看个人信息</el-dropdown-item>
+            <el-dropdown-item command="b">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
@@ -42,31 +58,71 @@
 export default {
   data () {
     return {
-
+      hideTimeout: 1500,
+      username: 'test',
+      warnMsg: [
+        {
+          id: 1,
+          text: '今天天气不错'
+        },
+        {
+          id: 2,
+          text: '今天适合郊游'
+        },
+        {
+          id: 3,
+          text: '可以的'
+        }
+      ]
     }
   },
   computed: {
+    /* 菜单栏开关 */
     vicon () {
       return this.$store.state.home.icon;
     },
+    /* 菜单栏标题 */
     tipText () {
       return this.$store.state.home.tipText;
     }
   },
-  mounted () {
-
-  },
   methods: {
+    //改变Side状态
     changeSide () {
       this.$store.commit('switchShow')
+    },
+    //下拉菜单点击事件
+    handClick (command) {
+      switch (command) {
+        case 'a':
+          break;
+        case 'b':
+          //登出
+          this.Logout();
+          break;
+        default:
+          break;
+      }
+    },
+    //登出
+    Logout () {
+      this.$router.push('/login')
+      this.$store.commit('changeLogin', false)
+      setTimeout(() => {
+        this.$LZCMessage('您已登出', 'success')
+      })
     }
   }
 }
 </script>
-<style lang="scss" scope>
+<style lang="scss">
 .hicon {
   color: #fff;
-  font-size: 18px;
+  font-size: 24px;
+}
+.userMsg {
+  font-size: 16px;
+  color: #fff;
 }
 .header {
   .img-col {

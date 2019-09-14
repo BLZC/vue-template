@@ -2,7 +2,7 @@
   <div class="login">
     <div class="box">
       <div class="title">
-        API管理系统
+        Vue项目模板
       </div>
       <div class="account">
         <el-input placeholder="请输入账号"
@@ -33,25 +33,17 @@ export default {
   methods: {
     Login () {
       if (!this.account) {
-        this.$message({
-          message: '账号不能为空',
-          type: 'error'
-        })
+        this.$LZCMessage('账号不能为空', 'error')
       }
       else if (!this.password) {
-        this.$message({
-          message: '密码不能为空',
-          type: 'error'
-        })
+        this.$LZCMessage('密码不能为空', 'error')
       } else {
         this.loading = true
         this.$post('/login', { account: this.account, password: this.password }).then(res => {
           if (res.status) {
             this.loading = false
-            this.$message({
-              message: '登录成功',
-              type: 'success'
-            });
+            this.$LZCMessage('登录成功', 'success');
+            this.$store.commit('changeLogin', true)
             setTimeout(() => {
               localStorage.setItem('user', res.account)
               this.$router.push('/index')
@@ -60,10 +52,7 @@ export default {
           }
           else {
             this.loading = false
-            this.$message({
-              message: '登录失败，请确认您的账号密码是否正确',
-              type: 'error'
-            })
+            this.$LZCMessage('登录失败，请确认您的账号密码是否正确', 'error')
           }
         })
       }
