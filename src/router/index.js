@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import shop from './module/shop'
 import { blog } from './module/blog'
-import home from '../store/modules/home'
 
 Vue.use(Router)
 const originalPush = Router.prototype.push
@@ -47,7 +46,7 @@ let router = new Router({
  *  2. 根据用户权限（尚待完成）
  */
 router.beforeEach((to, from, next) => {
-  if (home.state.isLogin) {
+  if (localStorage.getItem('user')) {
     next()
   } else {
     if (to.path === '/login') {

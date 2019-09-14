@@ -43,7 +43,6 @@ export default {
           if (res.status) {
             this.loading = false
             this.$LZCMessage('登录成功', 'success');
-            this.$store.commit('changeLogin', true)
             setTimeout(() => {
               localStorage.setItem('user', res.account)
               this.$router.push('/index')

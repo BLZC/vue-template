@@ -107,7 +107,7 @@ export default {
     //登出
     Logout () {
       this.$router.push('/login')
-      this.$store.commit('changeLogin', false)
+      localStorage.removeItem('user')
       setTimeout(() => {
         this.$LZCMessage('您已登出', 'success')
       })

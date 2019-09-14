@@ -1,6 +1,5 @@
 export default {
   state: {
-    isLogin: false,
     show: true /* Side展开状态 */,
     isCollapse: false /* Side没有收缩 */,
     icon: 'iconfont iconshouqi' /* 伸展图标 */,
@@ -34,10 +33,6 @@ export default {
         state.text = 'Vue'
         state.tipText = '展开菜单'
       }
-    },
-    //改变登录状态
-    changeLogin(state, value) {
-      state.isLogin = value
     },
     //计算最多可以同时打开多少个标签
     hasWidth(state, value) {
