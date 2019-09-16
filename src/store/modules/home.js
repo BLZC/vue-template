@@ -47,13 +47,15 @@ export default {
     //添加tab
     addTabs(state, value) {
       let JS = JSON.stringify
-      //解决vuex数据刷新后初始化的问题
+      //将当前页面存在session中，解决vuex数据刷新后初始化的问题
       sessionStorage.setItem('currentTab', JS(value))
+      //要打开的页面标签是否已经存在 ？ 跳转 ： 加入数组
       if (JS(state.tabs).indexOf(JS(value)) < 0) {
         state.tabs.push(value)
       } else {
         state.selectTab = value
       }
+      //判断是否超过最多同时打开的标签数目
       if (state.tabs.length < state.tabNum) {
         state.canAdd = true
       } else {
@@ -65,6 +67,7 @@ export default {
       if (state.tabs.indexOf(value) > -1) {
         state.tabs.splice(state.tabs.indexOf(value), 1)
         state.canAdd = true
+        //如果当前打开的标签只有一个，则删除当前标签后应该跳转到首页标签
         if (!state.tabs.length) {
           state.tabs.push(state.tabIndex)
         }
