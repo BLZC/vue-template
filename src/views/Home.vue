@@ -10,7 +10,9 @@
         <Tabs></Tabs>
         <el-main>
           <el-collapse-transition>
-            <router-view />
+            <keep-alive>
+              <router-view />
+            </keep-alive>
           </el-collapse-transition>
         </el-main>
         <el-footer>

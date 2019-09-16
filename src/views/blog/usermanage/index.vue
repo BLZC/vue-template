@@ -53,8 +53,9 @@ export default {
     return {
       childForm: {} /* data in dialog -->form  */,
       pagination: {
+        currentPage: 1,
         psize: 10,
-        total: 111
+        total: null
       } /* 分页设置 */,
       Slotbuttons: [
         {
@@ -129,7 +130,8 @@ export default {
   methods: {
     //get user list
     getUsers () {
-      this.$post('/getusers', {}).then(res => {
+      let offset = (this.pagination.currentPage - 1) * this.pagination.psize;
+      this.$post('/getusers', { offset: offset, limit: this.pagination.psize }).then(res => {
         if (res.status) {
           this.tableData = res.result;
           this.pagination.total = res.result.length;
@@ -154,11 +156,16 @@ export default {
       this.dialog.title = "编辑";
       this.dialog.show = true;
       this.dialog.type = 2;
-      this.$post(url, { id: id.id }).then(res => {
-        if (res.status) {
-          this.childForm = res.result
+      this.tableData.forEach(element => {
+        if (element.id === id.id) {
+          this.childForm = element;
         }
       })
+      // this.$post(url, { id: id.id }).then(res => {
+      //   if (res.status) {
+      //     this.childForm = res.result
+      //   }
+      // })
     },
     //handle Function
     Handle (id, type, url) {
