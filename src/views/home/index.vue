@@ -11,6 +11,9 @@ export default {
     return {
 
     };
+  },
+  created () {
+    this.$store.commit('initTabs')
   }
 };
 </script>

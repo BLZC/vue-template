@@ -59,7 +59,7 @@ export default {
   data () {
     return {
       hideTimeout: 1500,
-      username: 'test',
+      username: localStorage.getItem('user'),
       warnMsg: [
         {
           id: 1,
@@ -107,7 +107,8 @@ export default {
     //登出
     Logout () {
       this.$router.push('/login')
-      localStorage.removeItem('user')
+      localStorage.clear()
+      sessionStorage.clear()
       setTimeout(() => {
         this.$LZCMessage('您已登出', 'success')
       })

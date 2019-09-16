@@ -1,7 +1,7 @@
 <!-- 封装table -->
 <template name="component-name">
   <div class="table">
-    <el-table :data="Tabledata"
+    <el-table :data="Tabledata.data"
               border
               size="small"
               stripe
@@ -23,10 +23,11 @@
     </el-table>
     <el-pagination :page-sizes="[10, 20, 50, 100]"
                    :page-size="pagination.psize"
+                   hide-on-single-page
                    layout="total, sizes, prev, pager, next, jumper"
                    @size-change="handleSizeChange"
                    @current-change="handleCurrentChange"
-                   :current-page.sync="currentPage"
+                   :current-page.sync="pagination.currentPage"
                    :total="pagination.total">
     </el-pagination>
   </div>
@@ -35,13 +36,12 @@
 export default {
   data () {
     return {
-      maxh: null,
-      currentPage: 1
+      maxh: null
     }
   },
   props: {
     Tabledata: {
-      type: Array,
+      type: Object,
       required: true
     },
     Tableheader: {
@@ -55,6 +55,7 @@ export default {
   },
   created () {
     this.calculate()
+    this.getUsers()
   },
   methods: {
     //头部样式
@@ -79,9 +80,20 @@ export default {
     handleSizeChange (val) {
       this.pagination.psize = val
     },
+    //get user list
+    getUsers () {
+      let offset = (this.pagination.currentPage - 1) * this.pagination.psize;
+      this.$post('/getusers', { offset: offset, limit: this.pagination.psize }).then(res => {
+        if (res.status) {
+          this.Tabledata.data = res.data.result;
+          this.pagination.total = res.data.len;
+        }
+      })
+    },
     //当前页跳转
     handleCurrentChange (val) {
-      this.currentPage = val
+      this.pagination.currentPage = val;
+      this.getUsers()
     }
   }
 }

@@ -2,7 +2,8 @@
 <template name="component-name">
   <div class="userManage">
     <add-form :dialog="dialog"
-              :data="childForm"></add-form>
+              :data="childForm"
+              v-if="dialog.show"></add-form>
     <top-btn>
       <div class="item_ipt">
         <el-input placeholder="请输入查询条件，点击回车确认"
@@ -43,11 +44,9 @@
 </template>
 <script>
 //topbtns component
-import TopBtn from '../../../components/topbtns'
+// import TopBtn from '../../../components/topbtns'
 //Table component
-import Table from '../../../components/table/index'
-//Dialog component
-import AddForm from './addForm'
+// import Table from '../../../components/table/index'
 export default {
   data () {
     return {
@@ -115,29 +114,16 @@ export default {
           label: '地址'
         }
       ] /* Table Header config */,
-      tableData: [] /* table data */
+      tableData: { data: [] } /* table data */
     }
   },
   components: {
-    Table,
-    AddForm,
-    TopBtn
-  },
-  mounted () {
-    //初始化数据
-    this.getUsers()
+    Table: () => import('../../../components/table'),
+    /* 弹框组件按需加载 */
+    AddForm: () => import('./addForm'),
+    TopBtn: () => import('../../../components/topbtns')
   },
   methods: {
-    //get user list
-    getUsers () {
-      let offset = (this.pagination.currentPage - 1) * this.pagination.psize;
-      this.$post('/getusers', { offset: offset, limit: this.pagination.psize }).then(res => {
-        if (res.status) {
-          this.tableData = res.result;
-          this.pagination.total = res.result.length;
-        }
-      })
-    },
     // add user
     Add () {
       this.dialog.show = true;
@@ -152,7 +138,10 @@ export default {
       }
     },
     //edit user
-    Edit (id, url) {
+    Edit (id) {
+      /**
+       * 编辑数据时采用前端遍历得到要编辑的具体数据-->前提：获取数据列表时已经获取所有数据信息
+       */
       this.dialog.title = "编辑";
       this.dialog.show = true;
       this.dialog.type = 2;
@@ -180,17 +169,19 @@ export default {
     },
     //delete one user
     Deleteone (id, url) {
+      url
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$post(url, { ids: id.id }).then(res => {
-          if (res.status) {
-            this.$LZCMessage(res.message, 'success')
-            this.getUsers()
-          }
-        })
+        // this.$post(url, { ids: id.id }).then(res => {
+        //   if (res.status) {
+        //     this.$LZCMessage(res.message, 'success')
+        //     this.getUsers()
+        //   }
+        // })
+        this.$LZCMessage('删除成功', 'success')
       }).catch(() => {
         this.$message({
           type: 'info',
@@ -209,12 +200,13 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$post('/apiusersdelete', { ids: ids }).then(res => {
-          if (res.status) {
-            this.$LZCMessage(res.message, 'success')
-            this.getUsers()
-          }
-        })
+        // this.$post('/apiusersdelete', { ids: ids }).then(res => {
+        //   if (res.status) {
+        //     this.$LZCMessage(res.message, 'success')
+        //     this.getUsers()
+        //   }
+        // })
+        this.$LZCMessage('删除成功', 'success')
       }).catch(() => {
         this.$message({
           type: 'info',

@@ -40,14 +40,21 @@ export default {
       } else {
         this.loading = true
         this.$post('/login', { account: this.account, password: this.password }).then(res => {
-          if (res.status) {
+          if (res.status && res.userInfo.success) {
             this.loading = false
             this.$LZCMessage('登录成功', 'success');
+            this.$store.commit('initTabs')
+            //缓存用户信息和标签初始化信息
+            localStorage.setItem('user', this.account)
+            sessionStorage.setItem('currentTab', JSON.stringify({
+              id: 1,
+              name: '门户首页',
+              path: '/index',
+              icon: 'iconfont iconshouye'
+            }))
             setTimeout(() => {
-              localStorage.setItem('user', res.account)
               this.$router.push('/index')
             }, 1000)
-
           }
           else {
             this.loading = false

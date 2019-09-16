@@ -11,10 +11,10 @@ export default {
       path: '/index',
       icon: 'iconfont iconshouye'
     } /* 首页标签 */,
-    tabs: [JSON.parse(localStorage.getItem('currentTab'))] /* 标签数组 */,
+    tabs: [JSON.parse(sessionStorage.getItem('currentTab'))] /* 标签数组 */,
     tabNum: null /* 同时可打开的标签数目 */,
     selectTab: JSON.parse(
-      localStorage.getItem('currentTab')
+      sessionStorage.getItem('currentTab')
     ) /* 当前选中的标签 */,
     canAdd: true /* 是否可以继续打开标签 */
   },
@@ -38,11 +38,17 @@ export default {
     hasWidth(state, value) {
       state.tabNum = Math.floor((parseInt(value) - 100) / 100)
     },
+    //初始化tabs和selectTab
+    initTabs(state) {
+      state.tabs.pop()
+      state.tabs.push(state.tabIndex)
+      state.selectTab = state.tabIndex
+    },
     //添加tab
     addTabs(state, value) {
       let JS = JSON.stringify
       //解决vuex数据刷新后初始化的问题
-      localStorage.setItem('currentTab', JS(value))
+      sessionStorage.setItem('currentTab', JS(value))
       if (JS(state.tabs).indexOf(JS(value)) < 0) {
         state.tabs.push(value)
       } else {
