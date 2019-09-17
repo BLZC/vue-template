@@ -21,7 +21,8 @@ yarn run build
 ## 目前实现的功能有
 
 1. 左侧菜单缩放
-2. 内部标签栏
+2. 内部标签
+   ![内置标签演示](/public/images/vue-template.gif)
 3. Table 封装，采用按需请求数据
 4. Axios 封装
 5. 登陆注册页面

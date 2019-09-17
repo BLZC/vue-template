@@ -65,6 +65,7 @@ export default {
       if (len) {
         let item = this.tabs[len - 1]
         this.switchTab(item)
+        sessionStorage.setItem('currentTab', JSON.stringify(item))
       }
     },
     //切换标签
