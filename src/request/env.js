@@ -1,8 +1,8 @@
-let baseUrl = ''
+let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = '/api'
+  baseUrl = '/api';
 }
 if (process.env.NODE_ENV === 'production') {
-  baseUrl = ''
+  baseUrl = '';
 }
-export default baseUrl
+export default baseUrl;

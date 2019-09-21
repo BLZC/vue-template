@@ -37,7 +37,7 @@ export default {
   data () {
     return {
       maxh: null
-    }
+    };
   },
   props: {
     Tabledata: {
@@ -54,33 +54,33 @@ export default {
     }
   },
   created () {
-    this.calculate()
-    this.getUsers()
+    this.calculate();
+    this.getUsers();
   },
   methods: {
-    //头部样式
+    // 头部样式
     SETHEADER ({ rowIndex }) {
       if (rowIndex == 0) {
-        return 'background:	#2F4F4F; color: #fff;'
+        return 'background:#2F4F4F; color: #fff;';
       } else {
-        return ''
+        return '';
       }
     },
-    //选择框状态改变
+    // 选择框状态改变
     handleSelectionChange (val) {
-      this.$store.commit('handlemultipleSelection', val)
+      this.$store.commit('handlemultipleSelection', val);
     },
-    //计算max-height
+    // 计算max-height
     calculate () {
-      let hg = window.screen.height
-      let mxh = hg - 400
-      this.maxh = mxh
+      let hg = window.screen.height;
+      let mxh = hg - 400;
+      this.maxh = mxh;
     },
-    //分页大小设置
+    // 分页大小设置
     handleSizeChange (val) {
-      this.pagination.psize = val
+      this.pagination.psize = val;
     },
-    //get user list
+    // get user list
     getUsers () {
       let offset = (this.pagination.currentPage - 1) * this.pagination.psize;
       this.$post('/getusers', { offset: offset, limit: this.pagination.psize }).then(res => {
@@ -88,15 +88,15 @@ export default {
           this.Tabledata.data = res.data.result;
           this.pagination.total = res.data.len;
         }
-      })
+      });
     },
-    //当前页跳转
+    // 当前页跳转
     handleCurrentChange (val) {
       this.pagination.currentPage = val;
-      this.getUsers()
+      this.getUsers();
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .table {

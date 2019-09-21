@@ -50,26 +50,26 @@
   </el-dialog>
 </template>
 <script>
-import { usr } from '../../../validate'
+import { usr } from '../../../validate';
 export default {
   name: 'Umform',
   data () {
     return {
       usr /* 校验规则 */
-    }
+    };
   },
   props: {
-    //dialog中form数据
+    // dialog中form数据
     data: {
       type: Object
     },
-    //dialog状态
+    // dialog状态
     dialog: {
       type: Object
     }
   },
   methods: {
-    //信息提交
+    // 信息提交
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -99,7 +99,7 @@ export default {
           /**
            * 前端mock
            */
-          this.$LZCMessage('新增/编辑成功', 'success')
+          this.$LZCMessage('新增/编辑成功', 'success');
           this.dialog.show = false;
         } else {
           return false;
@@ -107,5 +107,5 @@ export default {
       });
     }
   }
-}
+};
 </script>

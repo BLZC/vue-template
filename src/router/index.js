@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import shop from './module/shop'
-import { blog } from './module/blog'
+import Vue from 'vue';
+import Router from 'vue-router';
+import shop from './module/shop';
+import { blog } from './module/blog';
 
-Vue.use(Router)
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
+Vue.use(Router);
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err);
+};
 
 let router = new Router({
   mode: 'history',
@@ -19,14 +19,44 @@ let router = new Router({
       redirect: '/index',
       component: () => import('../views/Home'),
       children: [
+        // 首页
         {
           path: '/index',
           name: 'index',
+          meta: { title: '门户首页' },
           component: () => import('../views/home/index')
         },
-        //商城模块
+        // 我的信息
+        {
+          path: '/about',
+          name: 'about',
+          meta: { title: '个人信息' },
+          component: () => import('../views/messageManage/about')
+        },
+        // 消息列表
+        {
+          path: '/message',
+          name: 'message',
+          meta: { title: '消息列表' },
+          component: () => import('../views/messageManage/message')
+        },
+        // 商城模块
         ...shop,
-        ...blog
+        ...blog,
+        // 视频播放
+        {
+          path: '/videoPlay',
+          name: 'videoPlay',
+          meta: { title: '视频播放' },
+          component: () => import('../views/video/videoPlay')
+        },
+        // 视频直播
+        {
+          path: '/liveBroadcast',
+          name: 'liveBroadcast',
+          meta: { title: '视频直播' },
+          component: () => import('../views/video/liveBroadcast')
+        }
       ]
     },
     {
@@ -39,7 +69,7 @@ let router = new Router({
       component: () => import('../errorPage/404')
     }
   ]
-})
+});
 
 /**
  * 导航守卫
@@ -48,16 +78,16 @@ let router = new Router({
  */
 router.beforeEach((to, from, next) => {
   if (localStorage.getItem('user')) {
-    next()
+    next();
   } else {
     if (to.path === '/login') {
-      next()
+      next();
     } else {
       next({
         path: '/login'
-      })
+      });
     }
   }
-})
+});
 
-export default router
+export default router;

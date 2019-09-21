@@ -6,12 +6,12 @@
     <div class="tab_item"
          ref="tab_item"
          id="tab_item"
-         v-for="item in tabs"
-         :key="item.id"
+         v-for="(item, index) in tabs"
+         :key="index"
          :class="{Sclass: selectTab.name === item.name}"
          @click="switchTab(item)">
       <div class="tab_item_container">
-        <div class="text">{{item.name}}</div>
+        <div class="text">{{item.title}}</div>
         <div class="closeImg">
           <i class="el-icon-close"
              @click.stop="closeTab(item)"></i>
@@ -37,66 +37,102 @@
 <script>
 export default {
   data () {
-    return {}
+    return {};
   },
   computed: {
     /* 所有已经打开的标签 */
     tabs () {
-      return this.$store.state.home.tabs
+      return this.$store.state.home.tabs;
     },
     /* 当前选中的标签 */
     selectTab () {
-      return this.$store.state.home.selectTab
+      return this.$store.state.home.selectTab;
+    },
+    /* 是否可以继续打开标签 */
+    canAdd () {
+      return this.$store.state.home.canAdd;
+    }
+  },
+  watch: {
+    /**
+     * 监听路由变化
+     * TODO: 注意直接在地址栏改变路由的情况无法监听
+     */
+    $route (newValue, oldValue) {
+      this.setTabs(newValue);
     }
   },
   mounted () {
-    this.Init()
+    this.Init();
   },
   methods: {
-    //计算tabs宽度
+    // 计算tabs宽度
     Init () {
-      let len = this.$refs.tabs.scrollWidth
-      this.$store.commit('hasWidth', len)
+      let len = this.$refs.tabs.scrollWidth;
+      this.$store.commit('hasWidth', len);
+      this.$store.commit('restoreTabs');
+      let route = this.$route;
+      this.setTabs(route);
     },
-    //关闭标签
-    closeTab (value) {
-      this.$store.commit('closeTab', value)
-      let len = this.tabs.length
-      if (len) {
-        let item = this.tabs[len - 1]
-        this.switchTab(item)
-        sessionStorage.setItem('currentTab', JSON.stringify(item))
+    // 设置标签
+    setTabs (route) {
+      let newItem = {
+        title: route.meta.title,
+        path: route.fullPath,
+        name: route.name
+      };
+      // 该页面标签是否已经存在 ？ 跳转到该标签 ：新增并跳转
+      const isExist = this.tabs.some(item => {
+        return item.path === route.fullPath;
+      });
+      if (!isExist) {
+        if (this.canAdd) {
+          this.$store.commit('addTabs', newItem);
+          this.$store.commit('selectTab', newItem);
+        } else {
+          this.$LZCMessage('你打开的标签太多了，请关闭一些不用的标签后再尝试打开', 'warning');
+        }
+      } else {
+        this.$store.commit('selectTab', newItem);
       }
     },
-    //切换标签
-    switchTab (value) {
-      this.$store.commit('selectTab', value)
-      this.$router.push(value.path)
+    // 关闭标签
+    closeTab (value) {
+      this.$store.commit('closeTab', value);
+      let len = this.tabs.length;
+      if (len) {
+        let item = this.tabs[len - 1];
+        this.switchTab(item);
+        localStorage.setItem('currentTab', JSON.stringify(item));
+      }
     },
-    //下拉菜单点击事件处理
+    // 切换标签
+    switchTab (value) {
+      this.$router.push(value.path);
+    },
+    // 下拉菜单点击事件处理
     handleCommand (command) {
       if (command === 'other') {
-        this.closeOther()
-      }
-      else {
-        this.closeAll()
+        this.closeOther();
+      } else {
+        this.closeAll();
       }
     },
-    //关闭其他标签
+    // 关闭其他标签
     closeOther () {
-      this.$store.commit('closeOther')
+      this.$store.commit('closeOther');
     },
-    //关闭全部标签
+    // 关闭全部标签
     closeAll () {
-      this.$store.commit('closeAll')
-      let len = this.tabs.length
+      this.$store.commit('closeAll');
+      let len = this.tabs.length;
       if (len) {
-        let item = this.tabs[len - 1]
-        this.switchTab(item)
+        let item = this.tabs[len - 1];
+        this.switchTab(item);
       }
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .Sclass {

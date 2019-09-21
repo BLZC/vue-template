@@ -1,29 +1,29 @@
 /**
  * 封装axios
  */
-import axios from 'axios'
-import QS from 'qs'
-import baseUrl from './env'
-axios.defaults.timeout = 10000
-axios.defaults.baseURL = baseUrl
+import axios from 'axios';
+import QS from 'qs';
+import baseUrl from './env';
+axios.defaults.timeout = 10000;
+axios.defaults.baseURL = baseUrl;
 /**
  * get方法，对应get请求
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
-export function get(url, params) {
+export function get (url, params) {
   return new Promise((resolve, reject) => {
     axios
       .get(url, {
         params: params
       })
       .then(res => {
-        resolve(res.data)
+        resolve(res.data);
       })
       .catch(err => {
-        reject(err.data)
-      })
-  })
+        reject(err.data);
+      });
+  });
 }
 
 /**
@@ -31,17 +31,17 @@ export function get(url, params) {
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
-export function post(url, params) {
+export function post (url, params) {
   return new Promise((resolve, reject) => {
     axios
       .post(url, QS.stringify(params))
       .then(res => {
-        resolve(res.data)
+        resolve(res.data);
       })
       .catch(err => {
-        reject(err.data)
-      })
-  })
+        reject(err.data);
+      });
+  });
 }
 
 /**

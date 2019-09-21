@@ -9,8 +9,7 @@
         <el-input placeholder="请输入查询条件，点击回车确认"
                   suffix-icon="el-icon-search"
                   clearable
-                  v-model="search"
-                  size="small"></el-input>
+                  v-model="search"></el-input>
       </div>
       <div class="item_btn">
         <el-button type="primary"
@@ -43,11 +42,12 @@
   </div>
 </template>
 <script>
-//topbtns component
+// topbtns component
 // import TopBtn from '../../../components/topbtns'
-//Table component
+// Table component
 // import Table from '../../../components/table/index'
 export default {
+  name: 'userManage',
   data () {
     return {
       childForm: {} /* data in dialog -->form  */,
@@ -115,7 +115,7 @@ export default {
         }
       ] /* Table Header config */,
       tableData: { data: [] } /* table data */
-    }
+    };
   },
   components: {
     Table: () => import('../../../components/table'),
@@ -124,10 +124,10 @@ export default {
     TopBtn: () => import('../../../components/topbtns')
   },
   methods: {
-    // add user
+    //  add user
     Add () {
       this.dialog.show = true;
-      this.dialog.title = "新增";
+      this.dialog.title = '新增';
       this.dialog.type = 1;
       this.childForm = {
         name: '',
@@ -135,28 +135,28 @@ export default {
         sex: null,
         birth: '',
         address: ''
-      }
+      };
     },
-    //edit user
+    //  edit user
     Edit (id) {
       /**
        * 编辑数据时采用前端遍历得到要编辑的具体数据-->前提：获取数据列表时已经获取所有数据信息
        */
-      this.dialog.title = "编辑";
+      this.dialog.title = '编辑';
       this.dialog.show = true;
       this.dialog.type = 2;
       this.tableData.forEach(element => {
         if (element.id === id.id) {
           this.childForm = element;
         }
-      })
-      // this.$post(url, { id: id.id }).then(res => {
+      });
+      //  this.$post(url, { id: id.id }).then(res => {
       //   if (res.status) {
       //     this.childForm = res.result
       //   }
       // })
     },
-    //handle Function
+    //  handle Function
     Handle (id, type, url) {
       switch (type) {
         case 1:
@@ -167,53 +167,34 @@ export default {
           break;
       }
     },
-    //delete one user
+    //  delete one user
     Deleteone (id, url) {
-      url
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        // this.$post(url, { ids: id.id }).then(res => {
-        //   if (res.status) {
-        //     this.$LZCMessage(res.message, 'success')
-        //     this.getUsers()
-        //   }
-        // })
-        this.$LZCMessage('删除成功', 'success')
+        this.$LZCMessage('删除成功', 'success');
       }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
+        this.$message('已取消删除', 'info');
       });
     },
-    //delete all user
+    //  delete all user
     Deleteall () {
-      let ids = []
+      let ids = [];
       this.$store.state.table.multipleSelection.forEach(element => {
-        ids.push(element.id)
-      })
+        ids.push(element.id);
+      });
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        // this.$post('/apiusersdelete', { ids: ids }).then(res => {
-        //   if (res.status) {
-        //     this.$LZCMessage(res.message, 'success')
-        //     this.getUsers()
-        //   }
-        // })
-        this.$LZCMessage('删除成功', 'success')
+        this.$LZCMessage('删除成功', 'success');
       }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
+        this.$LZCMessage('已取消删除', 'info');
       });
     }
   }
-}
+};
 </script>

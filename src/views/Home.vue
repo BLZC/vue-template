@@ -10,7 +10,7 @@
         <Tabs></Tabs>
         <el-main>
           <el-collapse-transition>
-            <keep-alive>
+            <keep-alive :include="Tabs">
               <router-view />
             </keep-alive>
           </el-collapse-transition>
@@ -24,16 +24,21 @@
 </template>
 
 <script>
-import Head from './layout/header'
-import Side from './layout/side'
-import Foot from './layout/footer'
-import Tabs from './layout/tabs'
+import Head from './layout/header';
+import Side from './layout/side';
+import Foot from './layout/footer';
+import Tabs from './layout/tabs';
 export default {
   name: 'home',
   data () {
     return {
-
+      Tabs: []
     };
+  },
+  computed: {
+    Tabslist () {
+      return this.setTabs(this.$store.state.home.tabs);
+    }
   },
   components: {
     Head,
@@ -43,7 +48,15 @@ export default {
 
   },
   methods: {
-
+    // keep-alive实现缓存
+    setTabs (val) {
+      this.Tabs = [];
+      if (val.length) {
+        val.forEach(element => {
+          this.Tabs.push(element.name);
+        });
+      }
+    }
   }
 };
 </script>

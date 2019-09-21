@@ -6,17 +6,20 @@
       </div>
       <div class="account">
         <el-input placeholder="请输入账号"
+                  @keyup.enter.native="Jumpnext"
                   v-model="account"></el-input>
       </div>
       <div class="password">
         <el-input type="password"
+                  ref="inputPassword"
                   placeholder="请输入密码"
+                  @keyup.enter.native="Login"
                   v-model="password"></el-input>
       </div>
       <div>
         <el-button class="btn"
                    :loading="loading"
-                   @click="Login">登录</el-button>
+                   @click="Login">登 录</el-button>
       </div>
     </div>
   </div>
@@ -28,43 +31,47 @@ export default {
       account: '',
       password: '',
       loading: false
-    }
+    };
   },
   methods: {
+    //  密码框获取焦点
+    Jumpnext () {
+      this.$refs.inputPassword.focus();
+    },
+    //  登录
     Login () {
       if (!this.account) {
-        this.$LZCMessage('账号不能为空', 'error')
-      }
-      else if (!this.password) {
-        this.$LZCMessage('密码不能为空', 'error')
+        this.$LZCMessage('账号不能为空', 'error');
+      } else if (!this.password) {
+        this.$LZCMessage('密码不能为空', 'error');
       } else {
-        this.loading = true
+        this.loading = true;
         this.$post('/login', { account: this.account, password: this.password }).then(res => {
           if (res.status && res.userInfo.success) {
-            this.loading = false
+            this.loading = false;
             this.$LZCMessage('登录成功', 'success');
-            this.$store.commit('initTabs')
-            //缓存用户信息和标签初始化信息
-            localStorage.setItem('user', this.account)
-            sessionStorage.setItem('currentTab', JSON.stringify({
-              id: 1,
-              name: '门户首页',
-              path: '/index',
-              icon: 'iconfont iconshouye'
-            }))
+            let inititem = {
+              name: 'index',
+              title: '门户首页',
+              path: '/index'
+            };
+            //  缓存用户信息和标签初始化信息
+            localStorage.setItem('user', this.account);
+            this.$store.commit('initTabs', inititem);
+            localStorage.setItem('currentTab', JSON.stringify(inititem));
+            localStorage.setItem('tabs', JSON.stringify(inititem));
             setTimeout(() => {
-              this.$router.push('/index')
-            }, 1000)
+              this.$router.push('/index');
+            }, 1000);
+          } else {
+            this.loading = false;
+            this.$LZCMessage('登录失败，请确认您的账号密码是否正确', 'error');
           }
-          else {
-            this.loading = false
-            this.$LZCMessage('登录失败，请确认您的账号密码是否正确', 'error')
-          }
-        })
+        });
       }
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .login {
@@ -77,9 +84,10 @@ export default {
     width: 350px;
     height: 250px;
     background-color: #fafafa;
-    box-shadow: 5px 5px 3px 1px #333;
+    box-shadow: 0 5px 3px 1px #333;
     top: 50%;
     left: 50%;
+    border-radius: 10px;
     margin-top: -125px;
     margin-left: -175px;
     padding: 20px 20px;
@@ -93,8 +101,10 @@ export default {
     }
     .btn {
       width: 100%;
+      font-size: 16px;
       margin-top: 20px;
       background-color: blue;
+      font-weight: 550;
       color: #fff;
     }
   }

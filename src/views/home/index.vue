@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <div class="player">
     首页
   </div>
-
 </template>
 
 <script>
@@ -12,8 +11,9 @@ export default {
 
     };
   },
+
   created () {
-    this.$store.commit('initTabs')
+    // this.$store.commit('initTabs');
   }
 };
 </script>

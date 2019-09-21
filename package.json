@@ -11,9 +11,17 @@
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.11.1",
+    "video.js": "^7.6.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue-video-player": "^5.0.2",
     "vuex": "^3.0.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.10.0",
@@ -25,28 +33,5 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+  }
 }
