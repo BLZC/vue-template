@@ -1,6 +1,6 @@
 ## 项目演示
 
-![项目演示](/public/images/vue-template.gif)
+![项目演示](https://github.com/BLZC/Resource-hosting/blob/master/vue-template/vue-template.gif)
 
 ### 登录和用户信息采用[fastmock](https://www.fastmock.site/#/)
 
