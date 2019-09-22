@@ -136,7 +136,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .Sclass {
-  background-color: #fff !important;
+  background-color: #f0f0f0 !important;
   color: #000 !important;
   .el-icon-close {
     display: inline-block !important;
@@ -180,7 +180,7 @@ export default {
     }
   }
   .tab_item:hover {
-    background-color: #fff;
+    background-color: #f0f0f0;
     color: #000;
     .el-icon-close {
       display: inline-block;

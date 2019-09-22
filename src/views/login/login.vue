@@ -95,6 +95,7 @@ export default {
       text-align: center;
       font-size: 20px;
       font-weight: 550;
+      color: #333;
     }
     .account {
       margin: 20px 0 20px;

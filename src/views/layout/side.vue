@@ -80,29 +80,51 @@ export default {
         },
         {
           id: 5,
-          title: '商城系统',
+          title: '图表库',
           path: '3',
           icon: 'iconfont iconshangcheng1',
           children: [
             {
               id: 6,
-              title: '商品分类',
-              path: '/classification',
-              name: 'classification',
+              title: 'schart图表',
+              path: '/myschart',
+              name: 'myschart',
               icon: ''
-            },
-            {
-              id: 7,
-              title: '商品列表',
-              path: '/list',
-              name: 'list',
-              icon: ''
-            },
+            }
+            // {
+            //   id: 7,
+            //   title: '商品列表',
+            //   path: '/list',
+            //   name: 'list',
+            //   icon: ''
+            // },
+            // {
+            //   id: 8,
+            //   title: '商品属性',
+            //   path: '/attribute',
+            //   name: 'attribute',
+            //   icon: ''
+            // }
+          ]
+        },
+        {
+          id: 7,
+          title: '编辑器',
+          path: '4',
+          icon: 'iconfont iconshangcheng1',
+          children: [
             {
               id: 8,
-              title: '商品属性',
-              path: '/attribute',
-              name: 'attribute',
+              title: 'MD编辑器',
+              path: '/mymarkdown',
+              name: 'mymarkdown',
+              icon: ''
+            },
+            {
+              id: 17,
+              title: 'QE编辑器',
+              path: '/quilleditor',
+              name: 'quilleditor',
               icon: ''
             }
           ]
@@ -110,7 +132,7 @@ export default {
         {
           id: 9,
           title: '博客系统',
-          path: '4',
+          path: '5',
           icon: 'iconfont iconbokeblogger3',
           children: [
             {
@@ -146,7 +168,7 @@ export default {
         {
           id: 14,
           title: '视频插件',
-          path: '5',
+          path: '6',
           icon: 'iconfont iconshipin',
           children: [
             {

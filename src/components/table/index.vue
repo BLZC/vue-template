@@ -5,7 +5,6 @@
               border
               size="small"
               stripe
-              :header-cell-style="SETHEADER"
               :max-height="maxh"
               @selection-change="handleSelectionChange"
               style="width: 100%">
@@ -58,23 +57,15 @@ export default {
     this.getUsers();
   },
   methods: {
-    // 头部样式
-    SETHEADER ({ rowIndex }) {
-      if (rowIndex == 0) {
-        return 'background:#2F4F4F; color: #fff;';
-      } else {
-        return '';
-      }
-    },
     // 选择框状态改变
     handleSelectionChange (val) {
       this.$store.commit('handlemultipleSelection', val);
     },
     // 计算max-height
     calculate () {
-      let hg = window.screen.height;
-      let mxh = hg - 400;
-      this.maxh = mxh;
+      let _height = window.screen.height;
+      let _maxh = _height - 400;
+      this.maxh = _maxh;
     },
     // 分页大小设置
     handleSizeChange (val) {
@@ -103,6 +94,7 @@ export default {
   margin: 10px 0;
   .el-pagination {
     margin-top: 10px;
+    text-align: right;
   }
 }
 </style>

@@ -10,9 +10,11 @@
         <Tabs></Tabs>
         <el-main>
           <el-collapse-transition>
-            <keep-alive :include="Tabs">
-              <router-view />
-            </keep-alive>
+            <el-card class="box-card">
+              <keep-alive :include="Tabs">
+                <router-view />
+              </keep-alive>
+            </el-card>
           </el-collapse-transition>
         </el-main>
         <el-footer>
@@ -86,7 +88,7 @@ export default {
         background-color: transparent;
       }
       .el-main {
-        background-color: #fff;
+        background-color: #f0f0f0;
         color: #333;
         text-align: center;
         padding: 15px 20px 5px;

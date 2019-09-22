@@ -1,5 +1,5 @@
 <!-- 用户管理 -->
-<template name="component-name">
+<template>
   <div class="userManage">
     <add-form :dialog="dialog"
               :data="childForm"
@@ -29,10 +29,11 @@
              :dialog="dialog">
         <el-table-column fixed="right"
                          label="操作"
-                         width="180">
+                         width="220">
           <template slot-scope="scope">
             <el-button v-for="bitem in Slotbuttons"
                        :key="bitem.id"
+                       :icon="bitem.icon"
                        @click="Handle(scope.row, bitem.id, bitem.url)"
                        :type="bitem.type">{{bitem.text}}</el-button>
           </template>
@@ -42,10 +43,6 @@
   </div>
 </template>
 <script>
-// topbtns component
-// import TopBtn from '../../../components/topbtns'
-// Table component
-// import Table from '../../../components/table/index'
 export default {
   name: 'userManage',
   data () {
@@ -59,6 +56,7 @@ export default {
       Slotbuttons: [
         {
           id: 1,
+          icon: 'el-icon-edit',
           type: 'text',
           url: '/getuserDetail',
           text: '编辑'
@@ -66,6 +64,7 @@ export default {
         {
           id: 2,
           type: 'text',
+          icon: 'el-icon-delete',
           url: '/apiusersdelete',
           text: '删除'
         },

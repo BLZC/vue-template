@@ -1,0 +1,42 @@
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+}
+
+/**
+* 表头样式
+*/
+.el-table th {
+  background-color: rgb(47, 79, 79) !important;
+  color: #fff;
+}
+.el-tabs__header {
+  margin-bottom: 0px !important;
+}
+
+.el-tab-pane {
+  text-align: left;
+}
+
+.el-drawer {
+  background-color: rgba(0, 0, 0) !important;
+}
+.el-drawer__header {
+  color: #fff !important;
+  font-weight: 550;
+}
+.el-drawer .el-card {
+  background-color: rgba(0, 0, 0) !important;
+  color: #fff;
+  border: none !important;
+}
+
+.vjs_video_3-dimensions {
+  width: 98%;
+  height: 380px;
+  margin: 20px 0 0;
+}

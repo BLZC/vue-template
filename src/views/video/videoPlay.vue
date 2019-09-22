@@ -34,7 +34,7 @@ export default {
       playerOptions: {
         height: '360',
         autoplay: false,
-        muted: true,
+        muted: false /* 静音？ */,
         language: 'en',
         playbackRates: [0.7, 1.0, 1.5, 2.0],
         sources: [{
@@ -106,7 +106,7 @@ export default {
 <style lang="scss" >
 .player {
   .text {
-    text-align: center;
+    text-align: left;
     font-size: 16px;
     .link {
       cursor: pointer;
@@ -123,10 +123,8 @@ export default {
       margin-left: -50px;
       line-height: 50px;
     }
-    .vjs_video_3-dimensions {
-      width: 98%;
-      height: 380px;
-      margin: 20px 1% 0;
+    .video-js .vjs-tech {
+      padding: 10px;
     }
   }
 }

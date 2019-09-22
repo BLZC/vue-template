@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import shop from './module/shop';
+import charts from './module/charts';
+import editors from './module/editors';
 import { blog } from './module/blog';
 
 Vue.use(Router);
@@ -41,8 +42,9 @@ let router = new Router({
           component: () => import('../views/messageManage/message')
         },
         // 商城模块
-        ...shop,
+        ...charts,
         ...blog,
+        ...editors,
         // 视频播放
         {
           path: '/videoPlay',
