@@ -10,6 +10,7 @@ export default {
       title: '门户首页',
       path: '/index'
     } /* 首页标签 */,
+    taglist: [],
     tags: [JSON.parse(localStorage.getItem('currentTag'))] /* 标签数组 */,
     tabNum: null /* 同时可打开的标签数目 */,
     selectTag: JSON.parse(
@@ -53,6 +54,10 @@ export default {
       if (JS(state.tags).indexOf(JS(value)) < 0) {
         state.tags.push(value);
         localStorage.setItem('tags', JS(state.tags));
+        state.taglist = [];
+        state.tags.forEach(item => {
+          state.taglist.push(item.name);
+        });
       } else {
         state.selectTag = value;
       }
@@ -67,15 +72,24 @@ export default {
     restoreTags (state) {
       let JS = JSON.stringify;
       state.tags = [];
+      state.taglist = [];
       let oldTags = JSON.parse(localStorage.getItem('tags'));
       if (oldTags.length > 1) {
         oldTags.forEach(item => {
           if (JS(state.tags).indexOf(JS(item)) === -1) {
             state.tags.push(item);
           }
+          if (JS(state.taglist).indexOf(JS(item.name)) === -1) {
+            state.taglist.push(item.name);
+          }
         });
       } else {
-        state.tags.push(oldTags);
+        if (JS(state.tags).indexOf(JS(oldTags)) === -1) {
+          state.tags.push(oldTags);
+        }
+        if (JS(state.taglist).indexOf(JS(oldTags.name)) === -1) {
+          state.taglist.push(oldTags.name);
+        }
       }
     },
     // 删除tab
@@ -83,6 +97,10 @@ export default {
       if (state.tags.indexOf(value) > -1) {
         state.tags.splice(state.tags.indexOf(value), 1);
         localStorage.setItem('tags', JSON.stringify(state.tags));
+        state.taglist = [];
+        state.tags.forEach(item => {
+          state.taglist.push(item.name);
+        });
         state.canAdd = true;
         // 如果当前打开的标签只有一个，则删除当前标签后应该跳转到首页标签
         if (!state.tags.length) {

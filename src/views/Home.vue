@@ -27,13 +27,11 @@
 <script>
 export default {
   data () {
-    return {
-      Tags: []
-    };
+    return {};
   },
   computed: {
-    Tagslist () {
-      return this.setTags(this.$store.state.home.tags);
+    Tags () {
+      return this.$store.state.home.taglist;
     }
   },
   components: {
@@ -42,17 +40,6 @@ export default {
     Foot: () => import('./layout/footer'),
     Tags: () => import('./layout/tags')
 
-  },
-  methods: {
-    // keep-alive实现缓存
-    setTags (val) {
-      this.Tags = [];
-      if (val.length) {
-        val.forEach(element => {
-          this.Tags.push(element.name);
-        });
-      }
-    }
   }
 };
 </script>
