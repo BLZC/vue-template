@@ -5,9 +5,18 @@
     <el-card class="box-card">
       <div slot="header"
            class="clearfix">
-        <span>{{data.time}}</span>
+        <el-input placeholder="请输入题目"
+                  v-model="dataList.title"
+                  clearable>
+        </el-input>
       </div>
-      {{data.content}}
+      <el-input type="textarea"
+                placeholder="请输入内容"
+                v-model="dataList.content"
+                maxlength="200"
+                rows="10"
+                show-word-limit>
+      </el-input>
     </el-card>
   </el-drawer>
 </template>
@@ -15,7 +24,11 @@
 export default {
   data () {
     return {
-
+      dataList: {
+        title: '',
+        content: '',
+        time: new Date().toLocaleString()
+      }
     };
   },
   props: {

@@ -12,10 +12,10 @@
              @click="changeSide"></i>
         </el-tooltip>
       </el-col>
-      <el-col :span="2"
-              :offset="16"
+      <el-col :span="3"
+              :offset="18"
               class="message">
-        <div>
+        <div class="topIcon">
           <el-tooltip class="item"
                       effect="dark"
                       :content="fullText"
@@ -24,37 +24,34 @@
                @click="handleFullScreen"></i>
           </el-tooltip>
         </div>
-        <el-badge :value="3"
-                  style="cursor:pointer"
-                  class="item">
-          <el-tooltip class="item"
-                      effect="dark"
-                      content="点击查看详细信息"
-                      placement="bottom">
-            <i class="iconfont iconxiaoxi hicon"
-               @click="Checkmsg"></i>
-          </el-tooltip>
-        </el-badge>
-      </el-col>
-      <el-col :span="3"
-              class="information">
-        <span class="el-dropdown-link">
-          <!-- <i class="iconfont iconxiugaitouxiang hicon"></i> -->
-          <span class="userMsg">你好&nbsp;&nbsp;{{username}}&nbsp;&nbsp;</span>
-          <el-dropdown size="small"
-                       :hide-timeout='hideTimeout'
-                       style="cursor:pointer"
-                       @command="handClick"
-                       placement="bottom">
-            <i class="iconfont iconxiala hicon"></i>
-            <el-dropdown-menu slot="dropdown"
-                              class="dp1">
-              <el-dropdown-item command="a">查看个人信息</el-dropdown-item>
-              <el-dropdown-item command="b">退出</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </span>
-
+        <div class="topIcon">
+          <el-badge :value="3"
+                    style="cursor:pointer"
+                    class="item">
+            <el-tooltip class="item"
+                        effect="dark"
+                        content="点击查看详细信息"
+                        placement="bottom">
+              <i class="iconfont iconxiaoxi hicon"
+                 @click="Checkmsg"></i>
+            </el-tooltip>
+          </el-badge>
+        </div>
+        <el-dropdown size="small"
+                     :hide-timeout='hideTimeout'
+                     style="cursor:pointer"
+                     @command="handClick"
+                     placement="bottom">
+          <div class="el-dropdown-link lzc-flex topIcon">
+            <el-avatar size="small"
+                       src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"></el-avatar>
+          </div>
+          <el-dropdown-menu slot="dropdown"
+                            class="dp1">
+            <el-dropdown-item command="a">查看个人信息</el-dropdown-item>
+            <el-dropdown-item command="b">退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </el-col>
     </el-row>
   </div>
@@ -180,13 +177,13 @@ export default {
       color: #fff;
     }
   }
+  .topIcon {
+    padding: 0 10px;
+    height: 60px;
+  }
   .message {
     display: flex;
     justify-content: space-around;
-  }
-  .userMsg {
-    font-size: 16px;
-    color: #fff;
   }
   .el-badge__content.is-fixed {
     top: 14px !important;

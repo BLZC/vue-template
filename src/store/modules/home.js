@@ -67,11 +67,14 @@ export default {
     },
     // 恢复tabs
     restoreTabs (state) {
+      let JS = JSON.stringify;
       state.tabs.pop();
       let oldTabs = JSON.parse(localStorage.getItem('tabs'));
       if (oldTabs.length > 1) {
         oldTabs.forEach(item => {
-          state.tabs.push(item);
+          if (JS(state.tabs).indexOf(JS(item)) === -1) {
+            state.tabs.push(item);
+          }
         });
       } else {
         state.tabs.push(oldTabs);

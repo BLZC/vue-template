@@ -89,7 +89,8 @@ export default {
   data () {
     return {
       visable: {
-        show: false
+        show: false,
+        title: '消息详情'
       },
       activeName: 'msg_no',
       msg_no: 10,
