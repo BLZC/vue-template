@@ -4,14 +4,13 @@
       <Side></Side>
       <el-container>
         <el-header>
-
-          <Head></Head>
+          <my-header></my-header>
         </el-header>
-        <Tabs></Tabs>
+        <Tags></Tags>
         <el-main>
           <el-collapse-transition>
             <el-card class="box-card">
-              <keep-alive :include="Tabs">
+              <keep-alive :include="Tags">
                 <router-view />
               </keep-alive>
             </el-card>
@@ -26,43 +25,38 @@
 </template>
 
 <script>
-import Head from './layout/header';
-import Side from './layout/side';
-import Foot from './layout/footer';
-import Tabs from './layout/tabs';
 export default {
-  name: 'home',
   data () {
     return {
-      Tabs: []
+      Tags: []
     };
   },
   computed: {
-    Tabslist () {
-      return this.setTabs(this.$store.state.home.tabs);
+    Tagslist () {
+      return this.setTags(this.$store.state.home.tags);
     }
   },
   components: {
-    Head,
-    Side,
-    Foot,
-    Tabs
+    MyHeader: () => import('./layout/header'),
+    Side: () => import('./layout/side'),
+    Foot: () => import('./layout/footer'),
+    Tags: () => import('./layout/tags')
 
   },
   methods: {
     // keep-alive实现缓存
-    setTabs (val) {
-      this.Tabs = [];
+    setTags (val) {
+      this.Tags = [];
       if (val.length) {
         val.forEach(element => {
-          this.Tabs.push(element.name);
+          this.Tags.push(element.name);
         });
       }
     }
   }
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .home {
   height: 100vh;
   background-image: url('../../public/images/main.jpg');
@@ -82,7 +76,7 @@ export default {
         height: 40px !important;
         line-height: 40px;
       }
-      .tabs {
+      .tags {
         width: 100%;
         height: 35px;
         background-color: transparent;

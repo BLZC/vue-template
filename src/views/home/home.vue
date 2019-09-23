@@ -1,47 +1,45 @@
 <template>
-  <div class="home_index">
+  <div class="home-index">
     <Drawer :visable="visable"
             :data="propData"></Drawer>
     <Add-Todo :visable="addvisable"></Add-Todo>
-    <div class="home_top lzc-flex">
-      <div class="home_top_left">
-        <div class="home_top_left_top"
-             @click="Linkto('/about')">
+    <div class="home-top lzc-flex">
+      <div class="home-top-left">
+        <el-card shadow="hover"
+                 class="home-top-left-top"
+                 @click.native="Linkto('/about')">
+          <el-row>
+            <el-col :span="10">
+              <div class="avatar-block">
+                <el-avatar shape="square"
+                           :size="100"
+                           fit="fill"
+                           :src="url"></el-avatar>
+              </div>
+            </el-col>
+            <el-col class="ds lzc-flex"
+                    :span="14">
+              <div class="ds1">Admin</div>
+              <div class="ds2">超级管理员</div>
+            </el-col>
+          </el-row>
+          <el-divider></el-divider>
+          <div class="db lzc-flex">
+            <span>上次登录时间:</span>
+            <span>2019/2/1 1:28</span>
+          </div>
+          <div class="db lzc-flex">
+            <span>上次登录地点:</span>
+            <span>苏州工业园区</span>
+          </div>
+        </el-card>
+        <div class="home-top-left-bottom">
           <el-card shadow="hover">
-            <el-row>
-              <el-col :span="10">
-                <div class="avatar_block">
-                  <el-avatar shape="square"
-                             :size="100"
-                             fit="fill"
-                             :src="url"></el-avatar>
-                </div>
-              </el-col>
-              <el-col class="ds lzc-flex"
-                      :span="14">
-                <div class="ds1">Admin</div>
-                <div class="ds2">超级管理员</div>
-              </el-col>
-            </el-row>
-            <el-divider></el-divider>
-            <div class="db lzc-flex">
-              <span>上次登录时间:</span>
-              <span>2019/2/1 1:28</span>
-            </div>
-            <div class="db lzc-flex">
-              <span>上次登录地点:</span>
-              <span>苏州工业园区</span>
-            </div>
-          </el-card>
-        </div>
-        <div class="home_top_left_bottom">
-          <el-card shadow="hover">
-
           </el-card>
         </div>
       </div>
-      <div class="home_top_right">
-        <div class="home_top_right_top lzc-flex">
+      <div class="home-top-right">
+        <div class="home-top-right-top lzc-flex">
           <el-card shadow="hover"
                    v-for="item in topList"
                    :key="item.id">
@@ -58,12 +56,12 @@
             </div>
           </el-card>
         </div>
-        <div class="home_top_right_bottom">
+        <div class="home-top-right-bottom">
           <el-card class="box-card"
                    shadow="hover">
             <div slot="header"
                  class="clearfix">
-              <span class="card_title">待办事项</span>
+              <span class="card-title">待办事项</span>
               <el-button style="float: right; padding: 3px 5px"
                          type="text">删除</el-button>
               <el-button style="float: right; padding: 3px 5px"
@@ -89,7 +87,6 @@
                       {{item.time}}
                     </el-col>
                   </el-row>
-
                 </el-checkbox>
               </div>
             </el-checkbox-group>
@@ -97,13 +94,14 @@
         </div>
       </div>
     </div>
-    <div class="home_botttom"></div>
+    <div class="home-botttom"></div>
   </div>
 </template>
 
 <script>
 import Schart from 'vue-schart';
 export default {
+  name: 'index',
   data () {
     return {
       visable: {
@@ -199,49 +197,47 @@ export default {
         this.ischeckall = true;
         this.checkalltext = '取消全选';
         this.Todolist.forEach(item => {
-          this.checkTodo.push(item.id)
-        })
+          this.checkTodo.push(item.id);
+        });
       }
     }
   }
 };
 </script>
 <style lang="scss">
-.home_index {
-  .home_top {
+.home-index {
+  .home-top {
     justify-content: space-between;
-    .home_top_left {
+    .home-top-left {
       width: 30%;
-      .home_top_left_top {
+      .home-top-left-top {
         cursor: pointer;
-        .el-card {
-          height: 240px;
-          .avatar_block {
-            width: 80px;
-            height: 80px;
+        height: 240px;
+        .avatar-block {
+          width: 80px;
+          height: 80px;
+        }
+        .ds {
+          height: 100px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .ds1 {
+            font-size: 24px;
+            font-weight: 550;
           }
-          .ds {
-            height: 100px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            .ds1 {
-              font-size: 24px;
-              font-weight: 550;
-            }
-            .ds2 {
-              font-size: 20px;
-              color: #666;
-            }
-          }
-          .db {
-            justify-content: space-between;
-            color: #999;
-            line-height: 24px;
+          .ds2 {
+            font-size: 20px;
+            color: #666;
           }
         }
+        .db {
+          justify-content: space-between;
+          color: #999;
+          line-height: 24px;
+        }
       }
-      .home_top_left_bottom {
+      .home-top-left-bottom {
         margin-top: 20px;
         .el-card {
           height: 180px;
@@ -254,10 +250,10 @@ export default {
         }
       }
     }
-    .home_top_right {
+    .home-top-right {
       width: 68%;
       margin-left: 2%;
-      .home_top_right_top {
+      .home-top-right-top {
         height: 110px;
         justify-content: space-between;
         .el-card {
@@ -298,12 +294,12 @@ export default {
           }
         }
       }
-      .home_top_right_bottom {
+      .home-top-right-bottom {
         margin-top: 20px;
         .el-card {
           height: 310px;
           text-align: left;
-          .card_title {
+          .card-title {
             font-size: 16px;
             font-weight: 550;
           }

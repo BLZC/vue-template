@@ -6,7 +6,7 @@
       </div>
       <div class="account">
         <el-input placeholder="请输入账号"
-                  @keyup.enter.native="Jumpnext"
+                  @keyup.enter.native="jumpNext"
                   v-model="account"></el-input>
       </div>
       <div class="password">
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     //  密码框获取焦点
-    Jumpnext () {
+    jumpNext () {
       this.$refs.inputPassword.focus();
     },
     //  登录
@@ -50,16 +50,16 @@ export default {
           if (res.status && res.userInfo.success) {
             this.loading = false;
             this.$LZCMessage('登录成功', 'success');
-            let inititem = {
+            let initItem = {
               name: 'index',
               title: '门户首页',
               path: '/index'
             };
             //  缓存用户信息和标签初始化信息
             localStorage.setItem('user', this.account);
-            this.$store.commit('initTabs', inititem);
-            localStorage.setItem('currentTab', JSON.stringify(inititem));
-            localStorage.setItem('tabs', JSON.stringify(inititem));
+            this.$store.commit('initTags', initItem);
+            localStorage.setItem('currentTag', JSON.stringify(initItem));
+            localStorage.setItem('tags', JSON.stringify(initItem));
             setTimeout(() => {
               this.$router.push('/index');
             }, 1000);

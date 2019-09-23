@@ -1,5 +1,3 @@
-import { stat } from 'fs';
-
 export default {
   state: {
     show: true /* Side展开状态 */,
@@ -12,12 +10,12 @@ export default {
       title: '门户首页',
       path: '/index'
     } /* 首页标签 */,
-    tabs: [JSON.parse(localStorage.getItem('currentTab'))] /* 标签数组 */,
+    tags: [JSON.parse(localStorage.getItem('currentTag'))] /* 标签数组 */,
     tabNum: null /* 同时可打开的标签数目 */,
-    selectTab: JSON.parse(
-      localStorage.getItem('currentTab')
+    selectTag: JSON.parse(
+      localStorage.getItem('currentTag')
     ) /* 当前选中的标签 */,
-    // selectTab: null,
+    // selectTag: null,
     canAdd: true /* 是否可以继续打开标签 */
   },
   mutations: {
@@ -40,76 +38,76 @@ export default {
     hasWidth (state, value) {
       state.tabNum = Math.floor((parseInt(value) - 100) / 100);
     },
-    // 初始化tabs和selectTab
-    initTabs (state, value) {
-      state.tabs.pop();
-      state.tabs.push(value);
-      state.selectTab = value;
+    // 初始化tags和selectTag
+    initTags (state, value) {
+      state.tags = [];
+      state.tags.push(value);
+      state.selectTag = value;
     },
     // 添加tab
-    addTabs (state, value) {
+    addTags (state, value) {
       let JS = JSON.stringify;
       // 将当前页面存在session中，解决vuex数据刷新后初始化的问题
-      // localStorage.setItem('currentTab', JS(value));
+      // localStorage.setItem('currentTag', JS(value));
       // 要打开的页面标签是否已经存在 ？ 跳转 ： 加入数组
-      if (JS(state.tabs).indexOf(JS(value)) < 0) {
-        state.tabs.push(value);
-        localStorage.setItem('tabs', JS(state.tabs));
+      if (JS(state.tags).indexOf(JS(value)) < 0) {
+        state.tags.push(value);
+        localStorage.setItem('tags', JS(state.tags));
       } else {
-        state.selectTab = value;
+        state.selectTag = value;
       }
       // 判断是否超过最多同时打开的标签数目
-      if (state.tabs.length < state.tabNum) {
+      if (state.tags.length < state.tabNum) {
         state.canAdd = true;
       } else {
         state.canAdd = false;
       }
     },
-    // 恢复tabs
-    restoreTabs (state) {
+    // 恢复tags
+    restoreTags (state) {
       let JS = JSON.stringify;
-      state.tabs.pop();
-      let oldTabs = JSON.parse(localStorage.getItem('tabs'));
-      if (oldTabs.length > 1) {
-        oldTabs.forEach(item => {
-          if (JS(state.tabs).indexOf(JS(item)) === -1) {
-            state.tabs.push(item);
+      state.tags = [];
+      let oldTags = JSON.parse(localStorage.getItem('tags'));
+      if (oldTags.length > 1) {
+        oldTags.forEach(item => {
+          if (JS(state.tags).indexOf(JS(item)) === -1) {
+            state.tags.push(item);
           }
         });
       } else {
-        state.tabs.push(oldTabs);
+        state.tags.push(oldTags);
       }
     },
     // 删除tab
     closeTab (state, value) {
-      if (state.tabs.indexOf(value) > -1) {
-        state.tabs.splice(state.tabs.indexOf(value), 1);
-        localStorage.setItem('tabs', JSON.stringify(state.tabs));
+      if (state.tags.indexOf(value) > -1) {
+        state.tags.splice(state.tags.indexOf(value), 1);
+        localStorage.setItem('tags', JSON.stringify(state.tags));
         state.canAdd = true;
         // 如果当前打开的标签只有一个，则删除当前标签后应该跳转到首页标签
-        if (!state.tabs.length) {
-          state.tabs.push(state.tabIndex);
+        if (!state.tags.length) {
+          state.tags.push(state.tabIndex);
         }
       }
     },
     // 修改选中的tab
-    selectTab (state, value) {
-      state.selectTab = value;
-      localStorage.setItem('currentTab', JSON.stringify(value));
+    selectTag (state, value) {
+      state.selectTag = value;
+      localStorage.setItem('currentTag', JSON.stringify(value));
     },
     // 关闭其他标签
     closeOther (state) {
-      state.tabs = [];
-      state.tabs.push(state.selectTab);
-      localStorage.removeItem('tabs');
-      localStorage.setItem('tabs', JSON.stringify(state.selectTab));
+      state.tags = [];
+      state.tags.push(state.selectTag);
+      localStorage.removeItem('tags');
+      localStorage.setItem('tags', JSON.stringify(state.selectTag));
     },
     // 关闭所有标签
     closeAll (state) {
-      state.tabs = [];
-      state.tabs.push(state.tabIndex);
-      localStorage.removeItem('tabs');
-      localStorage.setItem('tabs', JSON.stringify(state.tabIndex));
+      state.tags = [];
+      state.tags.push(state.tabIndex);
+      localStorage.removeItem('tags');
+      localStorage.setItem('tags', JSON.stringify(state.tabIndex));
     }
   }
 };

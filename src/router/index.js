@@ -25,7 +25,7 @@ let router = new Router({
           path: '/index',
           name: 'index',
           meta: { title: '门户首页' },
-          component: () => import('../views/home/index')
+          component: () => import('../views/home/home')
         },
         // 我的信息
         {

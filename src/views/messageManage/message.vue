@@ -9,7 +9,7 @@
         <div class="list"
              v-for="(item, index) in list"
              :key="index"
-             @click="Showdetail(item)">
+             @click="showDetail(item)">
           <el-row>
             <el-col :span="22"
                     class="title">
@@ -18,7 +18,6 @@
             <el-col :span="2"
                     class="time">
               {{item.time}}
-              <!-- <el-button type="primary" plain></el-button> -->
             </el-col>
           </el-row>
           <el-divider></el-divider>
@@ -31,7 +30,7 @@
         <div class="list"
              v-for="(item, index) in list"
              :key="index"
-             @click="Showdetail(item)">
+             @click="showDetail(item)">
           <el-row>
             <el-col :span="20"
                     class="title">
@@ -40,7 +39,6 @@
             <el-col :span="2"
                     class="time">
               {{item.time}}
-              <!-- <el-button type="primary" plain></el-button> -->
             </el-col>
             <el-col :span="2"
                     class="delete">
@@ -59,7 +57,7 @@
         <div class="list"
              v-for="(item, index) in list"
              :key="index"
-             @click="Showdetail(item)">
+             @click="showDetail(item)">
           <el-row>
             <el-col :span="20"
                     class="title">
@@ -117,14 +115,12 @@ export default {
     Drawer: () => import('./drawer')
   },
   methods: {
+    // tab切换
     handleClick (tab, event) {
       console.log(tab, event);
     },
-    Read () {
-      console.log('已读');
-    },
     // 显示消息详情
-    Showdetail (item) {
+    showDetail (item) {
       this.visable.show = true;
       this.propData = item;
     },
@@ -140,7 +136,7 @@ export default {
 
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .message {
   .el-divider--horizontal {
     margin: 0 !important;
@@ -154,7 +150,6 @@ export default {
       text-align: left;
       color: #409eff;
       font-size: 13px;
-      // font-weight: 550;
     }
     .time {
       font-size: 12px;

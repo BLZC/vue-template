@@ -1,25 +1,23 @@
-<!-- Tabs组件 -->
+<!-- Tags组件 -->
 <template>
-  <div class="tabs"
-       id="tabs"
-       ref="tabs">
-    <div class="tab_item"
-         ref="tab_item"
-         id="tab_item"
-         v-for="(item, index) in tabs"
+  <div class="tags"
+       id="tags"
+       ref="tags">
+    <div class="tab-item"
+         ref="tab-item"
+         id="tab-item"
+         v-for="(item, index) in tags"
          :key="index"
-         :class="{Sclass: selectTab.name === item.name}"
+         :class="{activeClass: selectTag.name === item.name}"
          @click="switchTab(item)">
-      <div class="tab_item_container">
+      <div class="tab-item-container">
         <div class="text">{{item.title}}</div>
-        <div class="closeImg">
-          <i class="el-icon-close"
-             @click.stop="closeTab(item)"></i>
-        </div>
+        <i class="el-icon-close"
+           @click.stop="closeTab(item)"></i>
       </div>
     </div>
-    <div class="close_button">
-      <el-dropdown trigger="hover"
+    <div class="close-button">
+      <el-dropdown trigger="click"
                    @command="handleCommand">
         <span class="el-dropdown-link">
           标签选项<i class="el-icon-arrow-down el-icon--right"></i>
@@ -41,12 +39,12 @@ export default {
   },
   computed: {
     /* 所有已经打开的标签 */
-    tabs () {
-      return this.$store.state.home.tabs;
+    tags () {
+      return this.$store.state.home.tags;
     },
     /* 当前选中的标签 */
-    selectTab () {
-      return this.$store.state.home.selectTab;
+    selectTag () {
+      return this.$store.state.home.selectTag;
     },
     /* 是否可以继续打开标签 */
     canAdd () {
@@ -59,51 +57,51 @@ export default {
      * TODO: 注意直接在地址栏改变路由的情况无法监听
      */
     $route (newValue, oldValue) {
-      this.setTabs(newValue);
+      this.setTags(newValue);
     }
   },
   mounted () {
     this.Init();
   },
   methods: {
-    // 计算tabs宽度
+    // 计算tags宽度
     Init () {
-      let len = this.$refs.tabs.scrollWidth;
+      let len = this.$refs.tags.scrollWidth;
       this.$store.commit('hasWidth', len);
-      this.$store.commit('restoreTabs');
+      this.$store.commit('restoreTags');
       let route = this.$route;
-      this.setTabs(route);
+      this.setTags(route);
     },
     // 设置标签
-    setTabs (route) {
+    setTags (route) {
       let newItem = {
         title: route.meta.title,
         path: route.fullPath,
         name: route.name
       };
       // 该页面标签是否已经存在 ？ 跳转到该标签 ：新增并跳转
-      const isExist = this.tabs.some(item => {
+      const isExist = this.tags.some(item => {
         return item.path === route.fullPath;
       });
       if (!isExist) {
         if (this.canAdd) {
-          this.$store.commit('addTabs', newItem);
-          this.$store.commit('selectTab', newItem);
+          this.$store.commit('addTags', newItem);
+          this.$store.commit('selectTag', newItem);
         } else {
           this.$LZCMessage('你打开的标签太多了，请关闭一些不用的标签后再尝试打开', 'warning');
         }
       } else {
-        this.$store.commit('selectTab', newItem);
+        this.$store.commit('selectTag', newItem);
       }
     },
     // 关闭标签
     closeTab (value) {
       this.$store.commit('closeTab', value);
-      let len = this.tabs.length;
+      let len = this.tags.length;
       if (len) {
-        let item = this.tabs[len - 1];
+        let item = this.tags[len - 1];
         this.switchTab(item);
-        localStorage.setItem('currentTab', JSON.stringify(item));
+        localStorage.setItem('currentTag', JSON.stringify(item));
       }
     },
     // 切换标签
@@ -125,9 +123,9 @@ export default {
     // 关闭全部标签
     closeAll () {
       this.$store.commit('closeAll');
-      let len = this.tabs.length;
+      let len = this.tags.length;
       if (len) {
-        let item = this.tabs[len - 1];
+        let item = this.tags[len - 1];
         this.switchTab(item);
       }
     }
@@ -135,19 +133,19 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.Sclass {
+.activeClass {
   background-color: #f0f0f0 !important;
   color: #000 !important;
   .el-icon-close {
     display: inline-block !important;
   }
 }
-.tabs {
+.tags {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  .close_button {
+  .close-button {
     position: fixed;
     right: 0;
     padding: 0 10px;
@@ -156,7 +154,7 @@ export default {
     cursor: pointer;
     background-color: #bbffff;
   }
-  .tab_item {
+  .tab-item {
     margin-right: 2px;
     position: relative;
     width: 100px;
@@ -165,7 +163,7 @@ export default {
     line-height: 35px;
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
-    .tab_item_container {
+    .tab-item-container {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -179,7 +177,7 @@ export default {
       }
     }
   }
-  .tab_item:hover {
+  .tab-item:hover {
     background-color: #f0f0f0;
     color: #000;
     .el-icon-close {

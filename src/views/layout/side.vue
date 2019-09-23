@@ -202,33 +202,26 @@ export default {
   },
   methods: {
     // 添加标签
-    addTabs (item) {
+    addTags (item) {
       let JS = JSON.stringify;
-      if (JS(this.tabs).indexOf(JS(item)) === -1) {
+      if (JS(this.tags).indexOf(JS(item)) === -1) {
         if (this.canAdd) {
-          this.$store.commit('addTabs', item);
-          this.$store.commit('selectTab', item);
+          this.$store.commit('addTags', item);
+          this.$store.commit('selectTag', item);
           this.$router.push(item.path);
         } else {
           this.$LZCMessage('你打开的标签太多了，请关闭一些不用的标签后再尝试打开', 'warning');
         }
       } else {
-        this.$store.commit('addTabs', item);
-        this.$store.commit('selectTab', item);
+        this.$store.commit('addTags', item);
+        this.$store.commit('selectTag', item);
         this.$router.push(item.path);
       }
     }
   }
 };
 </script>
-<style lang="scss" >
-.hideClass {
-  width: 64px !important;
-  overflow: hidden;
-}
-.el-submenu__title:hover {
-  background-color: rgba(0, 0, 0, 0.3) !important;
-}
+<style lang="scss" scoped>
 .side {
   .el-aside {
     opacity: 1;

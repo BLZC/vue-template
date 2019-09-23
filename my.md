@@ -32,12 +32,12 @@
     addTabs(state, value) {
       let JS = JSON.stringify
       //将当前页面存在session中，解决vuex数据刷新后初始化的问题
-      sessionStorage.setItem('currentTab', JS(value))
+      sessionStorage.setItem('currentTag', JS(value))
       //要打开的页面标签是否已经存在 ？ 跳转 ： 加入数组
       if (JS(state.tabs).indexOf(JS(value)) < 0) {
         state.tabs.push(value)
       } else {
-        state.selectTab = value
+        state.selectTag = value
       }
       //判断是否超过最多同时打开的标签数目
       if (state.tabs.length < state.tabNum) {

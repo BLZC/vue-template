@@ -6,8 +6,8 @@ export default {
   mutations: {
     // table中选择框状态改变
     handlemultipleSelection (state, value) {
-      state.multipleSelection = value
+      state.multipleSelection = value;
     }
   },
   actions: {}
-}
+};

@@ -18,7 +18,7 @@
       </div>
       <div class="item_btn">
         <el-button type="danger"
-                   @click="Deleteall"
+                   @click="deleteAll"
                    icon="el-icon-delete">删除</el-button>
       </div>
     </top-btn>
@@ -162,12 +162,12 @@ export default {
           this.Edit(id, url);
           break;
         case 2:
-          this.Deleteone(id, url);
+          this.deleteOne(id, url);
           break;
       }
     },
     //  delete one user
-    Deleteone (id, url) {
+    deleteOne (id, url) {
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -179,7 +179,7 @@ export default {
       });
     },
     //  delete all user
-    Deleteall () {
+    deleteAll () {
       let ids = [];
       this.$store.state.table.multipleSelection.forEach(element => {
         ids.push(element.id);

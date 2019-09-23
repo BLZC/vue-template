@@ -2,12 +2,11 @@
   <div class="header">
     <el-row>
       <el-col :span="3"
-              class="img-col">
-        <el-tooltip class="item"
-                    effect="dark"
+              class="img-col show-pointer">
+        <el-tooltip effect="dark"
                     :content="tipText"
                     placement="right">
-          <i class="icon"
+          <i class="hicon"
              :class="vicon"
              @click="changeSide"></i>
         </el-tooltip>
@@ -15,39 +14,36 @@
       <el-col :span="3"
               :offset="18"
               class="message">
-        <div class="topIcon">
-          <el-tooltip class="item"
-                      effect="dark"
+        <div class="top-icon">
+          <el-tooltip effect="dark"
                       :content="fullText"
                       placement="bottom">
             <i :class="fullClass"
                @click="handleFullScreen"></i>
           </el-tooltip>
         </div>
-        <div class="topIcon">
+        <div class="top-icon">
           <el-badge :value="3"
-                    style="cursor:pointer"
-                    class="item">
-            <el-tooltip class="item"
-                        effect="dark"
+                    class="show-pointer">
+            <el-tooltip effect="dark"
                         content="点击查看详细信息"
                         placement="bottom">
               <i class="iconfont iconxiaoxi hicon"
-                 @click="Checkmsg"></i>
+                 @click="checkMsg"></i>
             </el-tooltip>
           </el-badge>
         </div>
         <el-dropdown size="small"
-                     :hide-timeout='hideTimeout'
-                     style="cursor:pointer"
+                     class="show-pointer"
+                     trigger="click"
                      @command="handClick"
                      placement="bottom">
-          <div class="el-dropdown-link lzc-flex topIcon">
+          <div class="el-dropdown-link lzc-flex top-icon">
             <el-avatar size="small"
                        src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"></el-avatar>
           </div>
           <el-dropdown-menu slot="dropdown"
-                            class="dp1">
+                            class="dropdown-top">
             <el-dropdown-item command="a">查看个人信息</el-dropdown-item>
             <el-dropdown-item command="b">退出</el-dropdown-item>
           </el-dropdown-menu>
@@ -60,25 +56,9 @@
 export default {
   data () {
     return {
-      hideTimeout: 1500,
-      username: localStorage.getItem('user'),
       fullClass: 'iconfont hicon iconquanping' /* class */,
       fullText: '全屏' /* tip */,
-      isfull: false /* 是否在全屏状态 */,
-      warnMsg: [
-        {
-          id: 1,
-          text: '今天天气不错'
-        },
-        {
-          id: 2,
-          text: '今天适合郊游'
-        },
-        {
-          id: 3,
-          text: '可以的'
-        }
-      ]
+      isfull: false /* 是否在全屏状态 */
     };
   },
   computed: {
@@ -100,18 +80,19 @@ export default {
     handClick (command) {
       switch (command) {
         case 'a':
-          this.Toabout();
+          // 查看个人信息
+          this.toAbout();
           break;
         case 'b':
           // 登出
-          this.Logout();
+          this.logOut();
           break;
         default:
           break;
       }
     },
     // 查看具体信息
-    Checkmsg () {
+    checkMsg () {
       this.$router.push('/message');
     },
     // 全屏事件
@@ -144,13 +125,12 @@ export default {
       this.fullClass = this.isfull ? 'iconfont hicon iconcaozuo-quanping-shousuo' : 'iconfont hicon iconquanping';
     },
     // 个人信息
-    Toabout () {
+    toAbout () {
       this.$router.push('/about');
     },
     // 登出
-    Logout () {
+    logOut () {
       this.$router.push('/login');
-      localStorage.clear();
       localStorage.clear();
       setTimeout(() => {
         this.$LZCMessage('您已登出', 'success');
@@ -159,34 +139,19 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.dp1 {
-  top: 40px !important;
-}
-.hicon {
-  color: #fff;
-  font-size: 24px;
-}
+<style lang="scss" scoped>
 .header {
   .img-col {
     text-align: left;
     padding-left: 5px;
-    cursor: pointer;
-    .icon {
-      font-size: 20px;
-      color: #fff;
-    }
   }
-  .topIcon {
+  .top-icon {
     padding: 0 10px;
     height: 60px;
   }
   .message {
     display: flex;
     justify-content: space-around;
-  }
-  .el-badge__content.is-fixed {
-    top: 14px !important;
   }
 }
 </style>

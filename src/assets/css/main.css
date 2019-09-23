@@ -22,6 +22,9 @@
   text-align: left;
 }
 
+/**
+* 抽屉样式
+*/
 .el-drawer {
   background-color: rgba(0, 0, 0) !important;
 }
@@ -35,8 +38,51 @@
   border: none !important;
 }
 
+/**
+* 视频播放样式
+*/
 .vjs_video_3-dimensions {
   width: 98%;
   height: 380px;
   margin: 20px 0 0;
+}
+
+/**
+* 可点击提示
+*/
+.show-pointer {
+  cursor: pointer;
+}
+
+/**
+* 图标样式
+*/
+.hicon {
+  color: #fff;
+  font-size: 24px;
+}
+
+/**
+* dropdown和内容之间的距离
+*/
+.dropdown-top {
+  top: 40px !important;
+}
+
+/**
+*消息数目提示
+*/
+.el-badge__content.is-fixed {
+  top: 14px !important;
+}
+
+/**
+* side样式
+*/
+.hideClass {
+  width: 64px !important;
+  overflow: hidden;
+}
+.el-submenu__title:hover {
+  background-color: rgba(0, 0, 0, 0.3) !important;
 }
