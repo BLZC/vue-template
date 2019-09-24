@@ -10,13 +10,12 @@ export default {
       title: '门户首页',
       path: '/index'
     } /* 首页标签 */,
-    taglist: [],
+    taglist: [] /* kekeep-alive状态保存 */,
     tags: [JSON.parse(localStorage.getItem('currentTag'))] /* 标签数组 */,
     tabNum: null /* 同时可打开的标签数目 */,
     selectTag: JSON.parse(
       localStorage.getItem('currentTag')
     ) /* 当前选中的标签 */,
-    // selectTag: null,
     canAdd: true /* 是否可以继续打开标签 */
   },
   mutations: {
@@ -48,16 +47,11 @@ export default {
     // 添加tab
     addTags (state, value) {
       let JS = JSON.stringify;
-      // 将当前页面存在session中，解决vuex数据刷新后初始化的问题
-      // localStorage.setItem('currentTag', JS(value));
       // 要打开的页面标签是否已经存在 ？ 跳转 ： 加入数组
       if (JS(state.tags).indexOf(JS(value)) < 0) {
         state.tags.push(value);
         localStorage.setItem('tags', JS(state.tags));
-        state.taglist = [];
-        state.tags.forEach(item => {
-          state.taglist.push(item.name);
-        });
+        state.taglist.push(value.name);
       } else {
         state.selectTag = value;
       }
@@ -78,16 +72,12 @@ export default {
         oldTags.forEach(item => {
           if (JS(state.tags).indexOf(JS(item)) === -1) {
             state.tags.push(item);
-          }
-          if (JS(state.taglist).indexOf(JS(item.name)) === -1) {
             state.taglist.push(item.name);
           }
         });
       } else {
         if (JS(state.tags).indexOf(JS(oldTags)) === -1) {
           state.tags.push(oldTags);
-        }
-        if (JS(state.taglist).indexOf(JS(oldTags.name)) === -1) {
           state.taglist.push(oldTags.name);
         }
       }
@@ -96,11 +86,8 @@ export default {
     closeTab (state, value) {
       if (state.tags.indexOf(value) > -1) {
         state.tags.splice(state.tags.indexOf(value), 1);
+        state.taglist.splice(state.tags.indexOf(value.name), 1);
         localStorage.setItem('tags', JSON.stringify(state.tags));
-        state.taglist = [];
-        state.tags.forEach(item => {
-          state.taglist.push(item.name);
-        });
         state.canAdd = true;
         // 如果当前打开的标签只有一个，则删除当前标签后应该跳转到首页标签
         if (!state.tags.length) {
