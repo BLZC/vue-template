@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <el-container>
+    <el-container class="outcontainer">
       <Side></Side>
       <el-container>
         <el-header>
@@ -47,19 +47,17 @@ export default {
 .home {
   height: 100vh;
   background-image: url('../../public/images/main.jpg');
-  .el-container {
+  .outcontainer {
     height: 100%;
+    margin-right: 20px;
     .el-container {
       .el-header,
       .el-footer {
-        padding-left: 0 !important;
         background-color: transparent;
-        color: #333;
-        text-align: center;
         line-height: 60px;
       }
       .el-footer {
-        background-color: #f2f6fc;
+        color: #fff;
         height: 40px !important;
         line-height: 40px;
       }
@@ -70,8 +68,6 @@ export default {
       }
       .el-main {
         background-color: #f0f0f0;
-        color: #333;
-        text-align: center;
         padding: 15px 20px 5px;
       }
     }

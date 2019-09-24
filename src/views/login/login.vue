@@ -82,20 +82,15 @@ export default {
   .box {
     position: absolute;
     width: 350px;
-    height: 250px;
+    top: calc(50% - 125px);
+    left: calc(50% - 175px);
     background-color: #fafafa;
     box-shadow: 0 5px 3px 1px #333;
-    top: 50%;
-    left: 50%;
     border-radius: 10px;
-    margin-top: -125px;
-    margin-left: -175px;
     padding: 20px 20px;
     .title {
-      text-align: center;
       font-size: 20px;
       font-weight: 550;
-      color: #333;
     }
     .account {
       margin: 20px 0 20px;

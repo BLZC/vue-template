@@ -1,20 +1,18 @@
 <!-- Tags组件 -->
 <template>
-  <div class="tags"
+  <div class="tags lzc-flex"
        id="tags"
        ref="tags">
-    <div class="tab-item"
+    <div class="tab-item lzc-flex"
          ref="tab-item"
          id="tab-item"
          v-for="(item, index) in tags"
          :key="index"
          :class="{activeClass: selectTag.name === item.name}"
          @click="switchTab(item)">
-      <div class="tab-item-container">
-        <div class="text">{{item.title}}</div>
-        <i class="el-icon-close"
-           @click.stop="closeTab(item)"></i>
-      </div>
+      <div class="text">{{item.title}}</div>
+      <div class="icon"> <i class="el-icon-close"
+           @click.stop="closeTab(item)"></i></div>
     </div>
     <div class="close-button">
       <el-dropdown trigger="click"
@@ -133,21 +131,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.activeClass {
-  background-color: #f0f0f0 !important;
-  color: #000 !important;
-  .el-icon-close {
-    display: inline-block !important;
-  }
-}
 .tags {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
   .close-button {
     position: fixed;
-    right: 0;
+    right: 20px;
+    width: 100px;
+    overflow: hidden;
     padding: 0 10px;
     height: 35px;
     line-height: 35px;
@@ -155,6 +144,7 @@ export default {
     background-color: #bbffff;
   }
   .tab-item {
+    justify-content: center;
     margin-right: 2px;
     position: relative;
     width: 100px;
@@ -163,30 +153,30 @@ export default {
     line-height: 35px;
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
-    .tab-item-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      .text {
-        width: 70%;
-        font-size: 14px;
-      }
-      .el-icon-close {
-        display: none;
-      }
+    .el-icon-close {
+      display: none;
     }
   }
+  .activeClass,
   .tab-item:hover {
     background-color: #f0f0f0;
     color: #000;
-    .el-icon-close {
-      display: inline-block;
+    .text {
+      width: 70%;
+      text-align: right;
     }
-    .el-icon-close:hover {
-      background-color: #ddd;
-      padding: 2px;
-      border-radius: 50%;
+    .icon {
+      width: 30%;
+      .el-icon-close {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 650 !important;
+      }
+      .el-icon-close:hover {
+        background-color: #ddd;
+        padding: 2px;
+        border-radius: 50%;
+      }
     }
   }
 }
