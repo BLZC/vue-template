@@ -1,4 +1,4 @@
-<template name="component-name">
+<template>
   <div class="login">
     <div class="box">
       <div class="title">

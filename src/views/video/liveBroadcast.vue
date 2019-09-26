@@ -1,4 +1,4 @@
-<template name="component-name">
+<template>
   <div>
   </div>
 </template>
@@ -6,7 +6,6 @@
 export default {
   data () {
     return {
-      count: 0
     };
   },
   methods: {

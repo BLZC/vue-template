@@ -10,6 +10,7 @@
   "dependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
     "axios": "^0.19.0",
+    "babel-polyfill": "^6.26.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.11.1",
     "mavon-editor": "^2.7.6",

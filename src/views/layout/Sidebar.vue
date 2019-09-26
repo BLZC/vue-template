@@ -87,8 +87,8 @@ export default {
             {
               id: 6,
               title: 'schart图表',
-              path: '/myschart',
-              name: 'myschart',
+              path: '/schart',
+              name: 'schart',
               icon: ''
             }
             // {
@@ -116,8 +116,8 @@ export default {
             {
               id: 8,
               title: 'MD编辑器',
-              path: '/mymarkdown',
-              name: 'mymarkdown',
+              path: '/markdown',
+              name: 'markdown',
               icon: ''
             },
             {

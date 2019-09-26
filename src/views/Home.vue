@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <el-container class="outcontainer">
-      <Side></Side>
+      <sidebar></sidebar>
       <el-container>
         <el-header>
-          <my-header></my-header>
+          <the-header></the-header>
         </el-header>
-        <Tags></Tags>
+        <tags></tags>
         <el-main>
           <el-collapse-transition>
             <el-card class="box-card">
@@ -17,7 +17,7 @@
           </el-collapse-transition>
         </el-main>
         <el-footer>
-          <Foot></Foot>
+          <the-footer></the-footer>
         </el-footer>
       </el-container>
     </el-container>
@@ -35,11 +35,10 @@ export default {
     }
   },
   components: {
-    MyHeader: () => import('./layout/header'),
-    Side: () => import('./layout/side'),
-    Foot: () => import('./layout/footer'),
-    Tags: () => import('./layout/tags')
-
+    TheHeader: () => import('./layout/Header'),
+    Sidebar: () => import('./layout/Sidebar'),
+    TheFooter: () => import('./layout/Footer'),
+    Tags: () => import('./layout/Tags')
   }
 };
 </script>

@@ -1,4 +1,4 @@
-<template name="component-name">
+<template>
   <div>
     商品属性
   </div>

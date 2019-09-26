@@ -1,4 +1,4 @@
-<template name="component-name">
+<template>
   <div class="mymarkdown">
     <div class="head">
       mavonEditor：基于Vue的markdown编辑器。 访问地址：<span class="link"
@@ -14,7 +14,7 @@
 import { mavonEditor } from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
 export default {
-  name: 'mymarkdown',
+  name: 'themarkdown',
   data () {
     return {
       doc: ''
@@ -28,7 +28,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .mymarkdown {
   .head {
     text-align: left;

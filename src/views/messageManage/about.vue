@@ -1,4 +1,4 @@
-<template name="component-name">
+<template>
   <div>
     我的信息
   </div>

@@ -166,8 +166,8 @@ export default {
     };
   },
   components: {
-    Drawer: () => import('../messageManage/drawer'),
-    AddTodo: () => import('./addTodo')
+    Drawer: () => import('../../components/Drawer'),
+    AddTodo: () => import('./AddTodo')
   },
   methods: {
     // 页面跳转

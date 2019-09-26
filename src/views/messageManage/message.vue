@@ -112,7 +112,7 @@ export default {
     };
   },
   components: {
-    Drawer: () => import('./drawer')
+    Drawer: () => import('../../components/Drawer')
   },
   methods: {
     // tab切换

@@ -3,10 +3,10 @@
  */
 let charts = [
   {
-    path: '/myschart',
-    name: 'myschart',
+    path: '/schart',
+    name: 'schart',
     meta: { title: 'schart图表' },
-    component: () => import('../../views/charts/myschart')
+    component: () => import('../../views/charts/TheSchart')
   }
 ];
 export default charts;

@@ -25,21 +25,21 @@ let router = new Router({
           path: '/index',
           name: 'index',
           meta: { title: '门户首页' },
-          component: () => import('../views/home/home')
+          component: () => import('../views/home/index')
         },
         // 我的信息
         {
           path: '/about',
           name: 'about',
           meta: { title: '个人信息' },
-          component: () => import('../views/messageManage/about')
+          component: () => import('../views/MessageManage/About')
         },
         // 消息列表
         {
           path: '/message',
           name: 'message',
           meta: { title: '消息列表' },
-          component: () => import('../views/messageManage/message')
+          component: () => import('../views/MessageManage/Message')
         },
         // 商城模块
         ...charts,
@@ -50,21 +50,21 @@ let router = new Router({
           path: '/videoPlay',
           name: 'videoPlay',
           meta: { title: '视频播放' },
-          component: () => import('../views/video/videoPlay')
+          component: () => import('../views/video/VideoPlay')
         },
         // 视频直播
         {
           path: '/liveBroadcast',
           name: 'liveBroadcast',
           meta: { title: '视频直播' },
-          component: () => import('../views/video/liveBroadcast')
+          component: () => import('../views/video/LiveBroadcast')
         }
       ]
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/login/login')
+      component: () => import('../views/login/Login')
     },
     {
       path: '*',

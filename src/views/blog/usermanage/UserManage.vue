@@ -117,10 +117,10 @@ export default {
     };
   },
   components: {
-    Table: () => import('../../../components/table'),
+    Table: () => import('../../../components/BasicTable'),
     /* 弹框组件按需加载 */
-    AddForm: () => import('./addForm'),
-    TopBtn: () => import('../../../components/topbtns')
+    AddForm: () => import('./AddForm'),
+    TopBtn: () => import('../../../components/TopButtons')
   },
   methods: {
     //  add user

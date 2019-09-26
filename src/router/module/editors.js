@@ -3,16 +3,16 @@
  */
 let editors = [
   {
-    path: '/mymarkdown',
-    name: 'mymarkdown',
+    path: '/markdown',
+    name: 'markdown',
     meta: { title: 'MD编辑器' },
-    component: () => import('../../views/editors/mymarkdown')
+    component: () => import('../../views/editors/TheMarkdown')
   },
   {
     path: '/quilleditor',
     name: 'quilleditor',
     meta: { title: 'QE编辑器' },
-    component: () => import('../../views/editors/quilleditor')
+    component: () => import('../../views/editors/TheQuillEditor')
   }
 ];
 export default editors;
