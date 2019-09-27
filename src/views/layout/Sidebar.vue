@@ -186,6 +186,21 @@ export default {
               icon: ''
             }
           ]
+        },
+        {
+          id: 18,
+          title: '组件拖放',
+          path: '7',
+          icon: 'iconfont iconzujian',
+          children: [
+            {
+              id: 19,
+              title: '组件拖放',
+              path: '/drag',
+              name: 'drag',
+              icon: ''
+            }
+          ]
         }
       ]
     };

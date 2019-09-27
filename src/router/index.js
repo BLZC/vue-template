@@ -58,6 +58,13 @@ let router = new Router({
           name: 'liveBroadcast',
           meta: { title: '视频直播' },
           component: () => import('../views/video/LiveBroadcast')
+        },
+        // vue-drag
+        {
+          path: '/drag',
+          name: 'drag',
+          meta: { title: 'VueDrag' },
+          component: () => import('../views/drag/VueDrag')
         }
       ]
     },

@@ -44,12 +44,14 @@
 /**
 * 视频播放样式
 */
-.vjs_video_3-dimensions {
+.video-js {
   width: 98%;
   height: 380px;
   margin: 20px 0 0;
 }
-
+.vjs-poster {
+  background-size: 80% 80% !important;
+}
 /**
 * 可点击提示
 */
@@ -88,4 +90,10 @@
 }
 .el-submenu__title:hover {
   background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+a {
+  font-size: 16px !important;
+  color: blue;
+  text-decoration: none;
 }
