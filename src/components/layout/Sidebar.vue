@@ -2,45 +2,48 @@
   <div class="side">
     <el-aside width="150px"
               :class="{hideClass: isCollapse }">
-      <el-collapse-transition>
-        <el-menu default-active=1
-                 unique-opened
-                 class="el-menu-vertical-demo"
-                 background-color="transparent"
-                 text-color="#fff"
-                 :collapse="isCollapse"
-                 router
-                 active-text-color="#ffd04b">
-          <div class="sildLogo">
-            {{text}}
-          </div>
-          <template v-for="item in lists">
-            <template v-if="item.children">
-              <el-submenu :index="item.path"
-                          :key="item.id">
-                <template slot="title">
-                  <i :class="item.icon" />
-                  <span>{{item.title}}</span>
-                </template>
-                <el-menu-item-group>
-                  <el-menu-item v-for="vitem in item.children"
-                                :key="vitem.id"
-                                :index="vitem.path">
-                    <template slot="title">{{vitem.title}}</template>
-                  </el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
-            </template>
-            <template v-else>
-              <el-menu-item :index="item.path"
+      <el-scrollbar wrap-class="scrollbar-wrapper">
+        <el-collapse-transition>
+          <el-menu default-active=1
+                   unique-opened
+                   class="el-menu-vertical-demo"
+                   background-color="transparent"
+                   text-color="#fff"
+                   :collapse="isCollapse"
+                   router
+                   active-text-color="#ffd04b">
+            <div class="sildLogo"
+                 @click="linkTo">
+              {{text}}
+            </div>
+            <template v-for="item in lists">
+              <template v-if="item.children">
+                <el-submenu :index="item.path"
                             :key="item.id">
-                <i :class="item.icon"></i>
-                <span slot="title">{{item.title}}</span>
-              </el-menu-item>
+                  <template slot="title">
+                    <i :class="item.icon" />
+                    <span>{{item.title}}</span>
+                  </template>
+                  <el-menu-item-group>
+                    <el-menu-item v-for="vitem in item.children"
+                                  :key="vitem.id"
+                                  :index="vitem.path">
+                      <template slot="title">{{vitem.title}}</template>
+                    </el-menu-item>
+                  </el-menu-item-group>
+                </el-submenu>
+              </template>
+              <template v-else>
+                <el-menu-item :index="item.path"
+                              :key="item.id">
+                  <i :class="item.icon"></i>
+                  <span slot="title">{{item.title}}</span>
+                </el-menu-item>
+              </template>
             </template>
-          </template>
-        </el-menu>
-      </el-collapse-transition>
+          </el-menu>
+        </el-collapse-transition>
+      </el-scrollbar>
     </el-aside>
   </div>
 </template>
@@ -49,13 +52,6 @@ export default {
   data () {
     return {
       lists: [
-        {
-          id: 1,
-          title: '门户首页',
-          path: '/index',
-          name: 'index',
-          icon: 'iconfont iconshouye'
-        },
         {
           id: 2,
           title: '信息管理',
@@ -82,7 +78,7 @@ export default {
           id: 5,
           title: '图表库',
           path: '3',
-          icon: 'iconfont iconshangcheng1',
+          icon: 'iconfont icontubiao',
           children: [
             {
               id: 6,
@@ -111,7 +107,7 @@ export default {
           id: 7,
           title: '编辑器',
           path: '4',
-          icon: 'iconfont iconshangcheng1',
+          icon: 'iconfont icon715bianjiqi_niantie',
           children: [
             {
               id: 8,
@@ -239,6 +235,10 @@ export default {
         this.$store.commit('selectTag', item);
         this.$router.push(item.path);
       }
+    },
+    // 跳转首页
+    linkTo () {
+      this.$router.push('/index');
     }
   }
 };
@@ -251,6 +251,7 @@ export default {
     text-align: center;
     height: 100%;
     .sildLogo {
+      cursor: pointer;
       font-size: 18px;
       height: 60px;
       line-height: 60px;

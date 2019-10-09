@@ -8,13 +8,15 @@
         </el-header>
         <tags></tags>
         <el-main>
-          <el-collapse-transition>
-            <el-card class="box-card">
-              <keep-alive :include="Tags">
-                <router-view />
-              </keep-alive>
-            </el-card>
-          </el-collapse-transition>
+          <el-scrollbar wrap-class="scrollbar-wrapper">
+            <el-collapse-transition>
+              <el-card class="box-card">
+                <keep-alive :include="Tags">
+                  <router-view />
+                </keep-alive>
+              </el-card>
+            </el-collapse-transition>
+          </el-scrollbar>
         </el-main>
         <el-footer>
           <basic-footer></basic-footer>

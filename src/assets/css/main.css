@@ -97,3 +97,26 @@ a {
   color: blue;
   text-decoration: none;
 }
+/* 滚动条样式 */
+.scrollbar-wrapper {
+  overflow-x: hidden !important;
+}
+
+.el-scrollbar__bar.is-vertical {
+  right: 0px;
+  width: 0 !important;
+}
+
+.el-scrollbar {
+  height: 100%;
+}
+
+/* 左侧菜单icon样式 */
+.el-submenu__title i,
+.el-menu-item i {
+  color: #fff !important;
+}
+
+.el-menu--vertical {
+  display: none;
+}
