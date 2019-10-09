@@ -195,9 +195,16 @@ export default {
           children: [
             {
               id: 19,
-              title: '组件拖放',
+              title: 'VueDrag',
               path: '/drag',
               name: 'drag',
+              icon: ''
+            },
+            {
+              id: 20,
+              title: 'GridLayout',
+              path: '/gridLayout',
+              name: 'gridLayout',
               icon: ''
             }
           ]

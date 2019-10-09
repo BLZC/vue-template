@@ -49,7 +49,7 @@ export default {
         this.$post('/login', { account: this.account, password: this.password }).then(res => {
           if (res.status && res.userInfo.success) {
             this.loading = false;
-            this.$LZCMessage('登录成功', 'success');
+            this.$LZCMessage(res.userInfo.message, 'success');
             let initItem = {
               name: 'index',
               title: '门户首页',
@@ -65,7 +65,7 @@ export default {
             }, 1000);
           } else {
             this.loading = false;
-            this.$LZCMessage('登录失败，请确认您的账号密码是否正确', 'error');
+            this.$LZCMessage(res.userInfo.message, 'error');
           }
         });
       }
@@ -75,7 +75,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .login {
-  background-image: url('/images/bg.jpg');
+  background-image: url('https://rescdn.qqmail.com/bizmail/zh_CN/htmledition/images/wwbiz_independent/index/index_banner_bg461ee1.png');
   background-size: 100% 100%;
   height: 100vh;
   width: 100%;

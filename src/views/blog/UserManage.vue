@@ -4,7 +4,7 @@
     <add-form :dialog="dialog"
               :data="childForm"
               v-if="dialog.show"></add-form>
-    <top-btn>
+    <top-buttons>
       <div class="item_ipt">
         <el-input placeholder="请输入查询条件，点击回车确认"
                   suffix-icon="el-icon-search"
@@ -21,12 +21,12 @@
                    @click="deleteAll"
                    icon="el-icon-delete">删除</el-button>
       </div>
-    </top-btn>
+    </top-buttons>
     <div class="table">
-      <Table :Tabledata="tableData"
-             :Tableheader="tbHeader"
-             :pagination="pagination"
-             :dialog="dialog">
+      <basic-table :Tabledata="tableData"
+                   :Tableheader="tbHeader"
+                   :pagination="pagination"
+                   :dialog="dialog">
         <el-table-column fixed="right"
                          label="操作"
                          width="220">
@@ -38,7 +38,7 @@
                        :type="bitem.type">{{bitem.text}}</el-button>
           </template>
         </el-table-column>
-      </Table>
+      </basic-table>
     </div>
   </div>
 </template>
@@ -115,12 +115,6 @@ export default {
       ] /* Table Header config */,
       tableData: { data: [] } /* table data */
     };
-  },
-  components: {
-    Table: () => import('../../../components/BasicTable'),
-    /* 弹框组件按需加载 */
-    AddForm: () => import('./AddForm'),
-    TopBtn: () => import('../../../components/TopButtons')
   },
   methods: {
     //  add user

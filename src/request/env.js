@@ -1,8 +1,8 @@
 let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = '/api';
+  baseUrl = '/dev';
 }
 if (process.env.NODE_ENV === 'production') {
-  baseUrl = '';
+  baseUrl = '/api';
 }
 export default baseUrl;

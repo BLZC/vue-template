@@ -4,7 +4,7 @@
       <sidebar></sidebar>
       <el-container>
         <el-header>
-          <the-header></the-header>
+          <basic-header></basic-header>
         </el-header>
         <tags></tags>
         <el-main>
@@ -17,7 +17,7 @@
           </el-collapse-transition>
         </el-main>
         <el-footer>
-          <the-footer></the-footer>
+          <basic-footer></basic-footer>
         </el-footer>
       </el-container>
     </el-container>
@@ -33,12 +33,6 @@ export default {
     Tags () {
       return this.$store.state.home.taglist;
     }
-  },
-  components: {
-    TheHeader: () => import('./layout/Header'),
-    Sidebar: () => import('./layout/Sidebar'),
-    TheFooter: () => import('./layout/Footer'),
-    Tags: () => import('./layout/Tags')
   }
 };
 </script>
@@ -46,6 +40,7 @@ export default {
 .home {
   height: 100vh;
   background-image: url('../../public/images/main.jpg');
+  background-size: 100% 100%;
   .outcontainer {
     height: 100%;
     margin-right: 20px;

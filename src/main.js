@@ -4,6 +4,8 @@ import router from './router';
 import store from './store';
 import 'babel-polyfill';
 import ElementUI from 'element-ui';
+// 全局注册组件
+import './components/global';
 // Vue富文本编辑器
 import VueQuillEditor from 'vue-quill-editor';
 // 国际化

@@ -50,7 +50,7 @@
   </el-dialog>
 </template>
 <script>
-import { usr } from '../../../validate';
+import { usr } from '../../validate';
 export default {
   name: 'Umform',
   data () {
