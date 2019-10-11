@@ -14,7 +14,7 @@
 * 表头样式
 */
 .el-table th {
-  background-color: rgb(47, 79, 79) !important;
+  background: rgb(47, 79, 79) !important;
   color: #fff;
 }
 .el-tabs__header {
@@ -29,14 +29,14 @@
 * 抽屉样式
 */
 .el-drawer {
-  background-color: rgba(0, 0, 0) !important;
+  background: rgba(0, 0, 0) !important;
 }
 .el-drawer__header {
   color: #fff !important;
   font-weight: 550;
 }
 .el-drawer .el-card {
-  background-color: rgba(0, 0, 0) !important;
+  background: rgba(0, 0, 0) !important;
   color: #fff;
   border: none !important;
 }
@@ -89,7 +89,7 @@
   overflow: hidden;
 }
 .el-submenu__title:hover {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background: rgba(0, 0, 0, 0.3) !important;
 }
 
 a {
@@ -100,6 +100,7 @@ a {
 /* 滚动条样式 */
 .scrollbar-wrapper {
   overflow-x: hidden !important;
+  margin-right: -25px !important;
 }
 
 .el-scrollbar__bar.is-vertical {

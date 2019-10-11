@@ -283,13 +283,13 @@ export default {
               }
             }
             .iconfont1 {
-              background-color: #66cdaa;
+              background: #66cdaa;
             }
             .iconfont2 {
-              background-color: #6495ed;
+              background: #6495ed;
             }
             .iconfont3 {
-              background-color: #ee6a50;
+              background: #ee6a50;
             }
           }
         }

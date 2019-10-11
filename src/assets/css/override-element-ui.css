@@ -17,7 +17,7 @@
 }
 .el-dialog__header {
   text-align: left;
-  background-color: #2f4f4f;
+  background: #2f4f4f;
 }
 .el-dialog__title {
   color: #fff !important;

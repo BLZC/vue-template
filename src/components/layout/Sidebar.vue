@@ -277,7 +277,7 @@ export default {
             font-weight: 500;
           }
           .el-menu-item:hover {
-            background-color: rgba(0, 0, 0, 0.3) !important;
+            background: rgba(0, 0, 0, 0.3) !important;
           }
         }
       }
@@ -289,7 +289,7 @@ export default {
         }
       }
       .el-menu-item:hover {
-        background-color: rgba(0, 0, 0, 0.3) !important;
+        background: rgba(0, 0, 0, 0.3) !important;
       }
     }
   }

@@ -78,15 +78,15 @@ export default {
         height: 40px;
         width: 200px;
         margin: 10px;
-        background-color: aliceblue;
+        background: aliceblue;
         cursor: move;
         line-height: 40px;
       }
       .list-group-item:nth-child(1) {
-        background-color: antiquewhite;
+        background: antiquewhite;
       }
       .list-group-item:nth-child(2) {
-        background-color: saddlebrown;
+        background: saddlebrown;
       }
     }
   }

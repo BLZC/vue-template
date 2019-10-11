@@ -41,7 +41,7 @@ export default {
 <style lang="scss" scoped>
 .home {
   height: 100vh;
-  background-image: url('../../public/images/main.jpg');
+  background-image: url('http://img95.699pic.com/photo/40009/2587.jpg_wh300.jpg');
   background-size: 100% 100%;
   .outcontainer {
     height: 100%;
@@ -49,7 +49,7 @@ export default {
     .el-container {
       .el-header,
       .el-footer {
-        background-color: transparent;
+        background: transparent;
         line-height: 60px;
       }
       .el-footer {
@@ -60,10 +60,10 @@ export default {
       .tags {
         width: 100%;
         height: 35px;
-        background-color: transparent;
+        background: transparent;
       }
       .el-main {
-        background-color: #f0f0f0;
+        background: #f0f0f0;
         padding: 15px 20px 5px;
       }
     }

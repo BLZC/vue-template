@@ -18,30 +18,28 @@ let router = new Router({
       path: '/',
       name: 'home',
       redirect: '/index',
-      component: resolve => require(['../views/Home'], resolve),
+      component: () => import('../views/Home'),
       children: [
         // 首页
         {
           path: '/index',
           name: 'index',
           meta: { title: '门户首页' },
-          component: resolve => require(['../views/home/index'], resolve)
+          component: () => import('../views/home/index')
         },
         // 我的信息
         {
           path: '/about',
           name: 'about',
           meta: { title: '个人信息' },
-          component: resolve =>
-            require(['../views/MessageManage/About'], resolve)
+          component: () => import('../views/MessageManage/About')
         },
         // 消息列表
         {
           path: '/message',
           name: 'message',
           meta: { title: '消息列表' },
-          component: resolve =>
-            require(['../views/MessageManage/Message'], resolve)
+          component: () => import('../views/MessageManage/Message')
         },
         // 商城模块
         ...charts,
@@ -52,37 +50,35 @@ let router = new Router({
           path: '/videoPlay',
           name: 'videoPlay',
           meta: { title: '视频播放' },
-          component: resolve => require(['../views/video/VideoPlay'], resolve)
+          component: () => import('../views/video/VideoPlay')
         },
         // 视频直播
         {
           path: '/liveBroadcast',
           name: 'liveBroadcast',
           meta: { title: '视频直播' },
-          component: resolve =>
-            require(['../views/video/LiveBroadcast'], resolve)
+          component: () => import('../views/video/LiveBroadcast')
         },
         // vue-drag
         {
           path: '/drag',
           name: 'drag',
           meta: { title: 'VueDrag' },
-          component: resolve => require(['../views/drag/VueDrag'], resolve)
+          component: () => import('../views/drag/VueDrag')
         },
         // vue-grid-layout
         {
           path: '/gridLayout',
           name: 'gridLayout',
           meta: { title: 'GridLayout' },
-          component: resolve =>
-            require(['../views/drag/VueGridLayout'], resolve)
+          component: () => import('../views/drag/VueGridLayout')
         }
       ]
     },
     {
       path: '/login',
       name: 'login',
-      component: resolve => require(['../views/login/Login'], resolve)
+      component: () => import('../views/login/Login')
     },
     {
       path: '*',

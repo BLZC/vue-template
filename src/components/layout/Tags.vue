@@ -141,7 +141,7 @@ export default {
     height: 35px;
     line-height: 35px;
     cursor: pointer;
-    background-color: #bbffff;
+    background: #bbffff;
   }
   .tab-item {
     justify-content: center;
@@ -151,7 +151,7 @@ export default {
     height: 35px;
     cursor: pointer;
     line-height: 35px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     .el-icon-close {
       display: none;
@@ -159,7 +159,7 @@ export default {
   }
   .activeClass,
   .tab-item:hover {
-    background-color: #f0f0f0;
+    background: #f0f0f0;
     color: #000;
     .text {
       width: 70%;
@@ -173,7 +173,7 @@ export default {
         font-weight: 650 !important;
       }
       .el-icon-close:hover {
-        background-color: #ddd;
+        background: #ddd;
         padding: 2px;
         border-radius: 50%;
       }

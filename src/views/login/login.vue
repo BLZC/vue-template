@@ -75,7 +75,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .login {
-  background-image: url('https://rescdn.qqmail.com/bizmail/zh_CN/htmledition/images/wwbiz_independent/index/index_banner_bg461ee1.png');
+  background-image: url('http://img95.699pic.com/photo/50046/0585.jpg_wh300.jpg');
   background-size: 100% 100%;
   height: 100vh;
   width: 100%;
@@ -84,7 +84,7 @@ export default {
     width: 350px;
     top: calc(50% - 125px);
     left: calc(50% - 175px);
-    background-color: #fafafa;
+    background: #fafafa;
     box-shadow: 0 5px 3px 1px #333;
     border-radius: 10px;
     padding: 20px 20px;
@@ -99,7 +99,7 @@ export default {
       width: 100%;
       font-size: 16px;
       margin-top: 20px;
-      background-color: blue;
+      background: blue;
       font-weight: 550;
       color: #fff;
     }
