@@ -1,7 +1,3 @@
-## 项目演示
-
-![项目演示](https://github.com/BLZC/Resource-hosting/blob/master/vue-template/vue-template.gif)
-
 ### 登录和用户信息采用[fastmock](https://www.fastmock.site/#/)
 
 ## 目前实现的功能有
@@ -16,6 +12,7 @@
 8. 消息模块
 9. schart 图表
 10. 全屏效果
+11. vue组件拖拽
 
 ### 项目运行
 
