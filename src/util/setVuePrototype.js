@@ -4,7 +4,6 @@ import { getCookie, setCookie, deleteCookie } from './cookieConfig';
 import { getLocalStorage, setLocalStorage, deleteLocalStorage, clearAllLocalStorage } from './localStorageConfig';
 import VueCookies from 'vue-cookies';
 
-Vue.use(VueCookies);
 Vue.prototype.$get = get;
 Vue.prototype.$post = post;
 Vue.prototype.$delete = del;

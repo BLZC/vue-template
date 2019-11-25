@@ -17,23 +17,23 @@
 </template>
 <script>
 export default {
-    data() {
-      return {
-        drawer: false,
-        direction: 'rtl',
-      };
-    },
-    props: {
-        config: {
-            type: Object,
-            required: true
-        }
-    },
-    methods: {
-      setTheme () {
-          this.$store.commit('changeTheme');
-      }
+  data () {
+    return {
+      drawer: false,
+      direction: 'rtl'
+    };
+  },
+  props: {
+    config: {
+      type: Object,
+      required: true
     }
+  },
+  methods: {
+    setTheme () {
+      this.$store.commit('changeTheme');
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
