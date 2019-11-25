@@ -13,8 +13,6 @@
     "core-js": "^2.6.5",
     "cross-env": "^6.0.3",
     "element-ui": "^2.11.1",
-    "fundebug-javascript": "^2.0.0",
-    "fundebug-vue": "^0.0.1",
     "mavon-editor": "^2.7.6",
     "video.js": "^7.6.0",
     "vue": "^2.6.10",
@@ -24,13 +22,7 @@
     "vue-schart": "^1.0.0",
     "vue-video-player": "^5.0.2",
     "vuedraggable": "^2.23.1",
-    "vuex": "^3.0.1",
-    "vue中的markdown": "",
-    "vue拖拽插件": "",
-    "vue网格拖拽插件": "",
-    "vue视频播放插件": "",
-    "富文本编辑器": "",
-    "适合vue的建议的图表插件": ""
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -47,6 +39,7 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "script-ext-html-webpack-plugin": "^2.1.4",
+    "vue-cookies": "^1.5.13",
     "vue-template-compiler": "^2.6.10",
     "webpack-bundle-analyzer": "^3.5.2"
   }

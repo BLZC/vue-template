@@ -53,20 +53,20 @@ export default {
     return {
       lists: [
         {
-          id: 2,
+          id: 1,
           title: '信息管理',
-          path: '2',
+          path: '1',
           icon: 'iconfont iconkerenxinxiguanli',
           children: [
             {
-              id: 3,
+              id: 2,
               title: '个人信息',
               path: '/about',
               name: 'about',
               icon: ''
             },
             {
-              id: 4,
+              id: 3,
               title: '消息列表',
               path: '/message',
               name: 'message',
@@ -75,49 +75,35 @@ export default {
           ]
         },
         {
-          id: 5,
+          id: 4,
           title: '图表库',
-          path: '3',
+          path: '2',
           icon: 'iconfont icontubiao',
           children: [
             {
-              id: 6,
+              id: 5,
               title: 'schart图表',
               path: '/schart',
               name: 'schart',
               icon: ''
             }
-            // {
-            //   id: 7,
-            //   title: '商品列表',
-            //   path: '/list',
-            //   name: 'list',
-            //   icon: ''
-            // },
-            // {
-            //   id: 8,
-            //   title: '商品属性',
-            //   path: '/attribute',
-            //   name: 'attribute',
-            //   icon: ''
-            // }
           ]
         },
         {
-          id: 7,
+          id: 6,
           title: '编辑器',
-          path: '4',
+          path: '3',
           icon: 'iconfont icon715bianjiqi_niantie',
           children: [
             {
-              id: 8,
+              id: 7,
               title: 'MD编辑器',
               path: '/markdown',
               name: 'markdown',
               icon: ''
             },
             {
-              id: 17,
+              id: 8,
               title: 'QE编辑器',
               path: '/quilleditor',
               name: 'quilleditor',
@@ -128,7 +114,7 @@ export default {
         {
           id: 9,
           title: '博客系统',
-          path: '5',
+          path: '4',
           icon: 'iconfont iconbokeblogger3',
           children: [
             {
@@ -137,45 +123,24 @@ export default {
               path: '/userManage',
               name: 'userManage',
               icon: ''
-            },
-            {
-              id: 11,
-              title: '文章管理',
-              path: '/articleManage',
-              name: 'articleManage',
-              icon: ''
-            },
-            {
-              id: 12,
-              title: '评论管理',
-              path: '/commentManage',
-              name: 'commentManage',
-              icon: ''
-            },
-            {
-              id: 13,
-              title: '404',
-              path: '/404',
-              name: 'errpage',
-              icon: ''
             }
           ]
         },
         {
-          id: 14,
+          id: 11,
           title: '视频插件',
-          path: '6',
+          path: '5',
           icon: 'iconfont iconshipin',
           children: [
             {
-              id: 15,
+              id: 12,
               title: '视频播放',
               path: '/videoPlay',
               name: 'videoPlay',
               icon: ''
             },
             {
-              id: 16,
+              id: 13,
               title: '视频直播',
               path: '/liveBroadcast',
               name: 'liveBroadcast',
@@ -184,23 +149,38 @@ export default {
           ]
         },
         {
-          id: 18,
+          id: 14,
           title: '组件拖放',
-          path: '7',
+          path: '6',
           icon: 'iconfont iconzujian',
           children: [
             {
-              id: 19,
+              id: 15,
               title: 'VueDrag',
               path: '/drag',
               name: 'drag',
               icon: ''
             },
             {
-              id: 20,
+              id: 16,
               title: 'GridLayout',
               path: '/gridLayout',
               name: 'gridLayout',
+              icon: ''
+            }
+          ]
+        },
+        {
+          id: 17,
+          title: '系统配置',
+          path: '7',
+          icon: 'iconfont iconxitong',
+          children: [
+            {
+              id: 18,
+              title: '404',
+              path: '/404',
+              name: 'errpage',
               icon: ''
             }
           ]

@@ -1,5 +1,6 @@
 <template>
   <div class="header">
+    <theme-drawer :config="themeDrawerConfig"></theme-drawer>
     <el-row>
       <el-col :span="3"
               class="img-col show-pointer">
@@ -14,6 +15,14 @@
       <el-col :span="3"
               :offset="18"
               class="message">
+        <div class="top-icon">
+          <el-tooltip effect="dark"
+                      content="主题"
+                      placement="bottom">
+            <i class="iconfont iconjingzi hicon"
+               @click="changeTheme"></i>
+          </el-tooltip>
+        </div>
         <div class="top-icon">
           <el-tooltip effect="dark"
                       :content="fullText"
@@ -53,13 +62,21 @@
   </div>
 </template>
 <script>
+import ThemeDrawer from './ThemeDrawer';
+
 export default {
   data () {
     return {
       fullClass: 'iconfont hicon iconquanping' /* class */,
       fullText: '全屏' /* tip */,
-      isfull: false /* 是否在全屏状态 */
+      isfull: false /* 是否在全屏状态 */,
+      themeDrawerConfig: {
+        show: false
+      }
     };
+  },
+  components: {
+    ThemeDrawer
   },
   computed: {
     /* 菜单栏开关 */
@@ -123,6 +140,10 @@ export default {
       this.isfull = !this.isfull;
       this.fullText = this.isfull ? '取消全屏' : '全屏';
       this.fullClass = this.isfull ? 'iconfont hicon iconcaozuo-quanping-shousuo' : 'iconfont hicon iconquanping';
+    },
+    // 切换主题
+    changeTheme () {
+      this.themeDrawerConfig.show = true;
     },
     // 个人信息
     toAbout () {

@@ -13,12 +13,14 @@
 
     <div class="drag-content">
       <h3 class="drag-status">Draggable {{ draggingInfo }}</h3>
-      <draggable :list="list"
+      <!-- <draggable :list="list"
                  :disabled="!enabled"
                  class="list-group lzc-flex"
                  ghost-class="ghost"
                  @start="dragging = true"
-                 @end="dragging = false">
+                 @end="dragging = false"> -->
+      <draggable :list="list" class="list-group lzc-flex"
+                  :options="{group:{name:'field', pull:false, put: true}}">
         <div class="list-group-item"
              v-for="element in list"
              :key="element.name">
@@ -59,8 +61,10 @@ export default {
 .vue-drag {
   min-height: 400px;
   .title {
-    font-weight: 550;
-    font-size: 16px;
+    font: {
+      weight: 550;
+      size: 16px;
+    }
     text-align: left;
     height: 40px;
     line-height: 40px;

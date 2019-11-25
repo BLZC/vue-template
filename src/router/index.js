@@ -11,7 +11,7 @@ Router.prototype.push = function push (location) {
 };
 
 let router = new Router({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -41,7 +41,6 @@ let router = new Router({
           meta: { title: '消息列表' },
           component: () => import('../views/MessageManage/Message')
         },
-        // 商城模块
         ...charts,
         ...blog,
         ...editors,

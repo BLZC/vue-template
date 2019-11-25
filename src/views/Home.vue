@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" :class="themeClass">
     <el-container class="outcontainer">
       <sidebar></sidebar>
       <el-container>
@@ -29,27 +29,48 @@
 <script>
 export default {
   data () {
-    return {};
+    return {
+    };
+  },
+  watch: {
+
   },
   computed: {
     Tags () {
       return this.$store.state.home.taglist;
+    },
+    themeClass () {
+      let _ist = this.$store.state.theme.isTransparent;
+      if (_ist) {
+        return 'transparent';
+      } else {
+        return 'dark';
+      }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+.transparent {
+  background: {
+    color: transparent;
+    image: url('http://img95.699pic.com/photo/40009/2587.jpg_wh300.jpg');
+  };
+}
+.dark {
+  background: rgb(84, 92, 100) !important;
+}
 .home {
   height: 100vh;
-  background-image: url('http://img95.699pic.com/photo/40009/2587.jpg_wh300.jpg');
-  background-size: 100% 100%;
+  background: {
+    size: 100% 100%;
+  }
   .outcontainer {
     height: 100%;
     margin-right: 20px;
     .el-container {
       .el-header,
       .el-footer {
-        background: transparent;
         line-height: 60px;
       }
       .el-footer {
