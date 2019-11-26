@@ -152,7 +152,7 @@ export default {
     // 登出
     logOut () {
       this.$router.push('/login');
-      localStorage.clear();
+      this.$clearls();
       setTimeout(() => {
         this.$LZCMessage('您已登出', 'success');
       });

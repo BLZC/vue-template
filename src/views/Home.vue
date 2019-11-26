@@ -40,26 +40,13 @@ export default {
       return this.$store.state.home.taglist;
     },
     themeClass () {
-      let _ist = this.$store.state.theme.isTransparent;
-      if (_ist) {
-        return 'transparent';
-      } else {
-        return 'dark';
-      }
+      let _theme = this.$store.state.theme.theme;
+      return _theme;
     }
   }
 };
 </script>
 <style lang="scss" scoped>
-.transparent {
-  background: {
-    color: transparent;
-    image: url('http://img95.699pic.com/photo/40009/2587.jpg_wh300.jpg');
-  };
-}
-.dark {
-  background: rgb(84, 92, 100) !important;
-}
 .home {
   height: 100vh;
   background: {

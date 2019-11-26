@@ -1,7 +1,7 @@
 import VueCookies from 'vue-cookies';
 // 获取cookie
 export function getCookie (name) {
-  VueCookies.get(name);
+  return VueCookies.get(name);
 }
 
 // 设置cookie

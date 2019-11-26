@@ -7,8 +7,10 @@
         <div class="container">
             <div class="container-one">
                 <span class="container-one-title">整体风格设置</span>
-                <div>
-                    <el-button type="primary" @click="setTheme" size="small">是否背景透明</el-button>
+                <div class="theme-setbtn">
+                    <button @click="setTheme('dark')" class="dark btn-size">&nbsp;</button>
+                    <button @click="setTheme('transparent')" class="transparent btn-size">&nbsp;</button>
+                    <button @click="setTheme('depdark')" class="depdark btn-size">&nbsp;</button>
                 </div>
             </div>
         </div>
@@ -30,8 +32,8 @@ export default {
     }
   },
   methods: {
-    setTheme () {
-      this.$store.commit('changeTheme');
+    setTheme (value) {
+      this.$store.commit('changeTheme', value);
     }
   }
 };
@@ -41,5 +43,15 @@ export default {
         padding: 0 20px;
         text-align: left;
         color: #fff;
+        .theme-setbtn {
+          margin-top: 20px;
+          .btn-size {
+            width: 60px;
+            height: 40px;
+          }
+          .transparent {
+            background: #fff;
+          }
+        }
     }
 </style>

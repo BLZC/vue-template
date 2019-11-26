@@ -1,3 +1,5 @@
+import { getCookie } from './cookieConfig';
 export default {
-  isTransparent: false
+  // 主题
+  theme: getCookie('theme') ? getCookie('theme') : 'dark'
 };

@@ -1,3 +1,4 @@
+import { getLocalStorage, setLocalStorage, deleteLocalStorage, clearAllLocalStorage } from '../../util/localStorageConfig';
 export default {
   state: {
     show: true /* Side展开状态 */,
@@ -11,10 +12,10 @@ export default {
       path: '/index'
     } /* 首页标签 */,
     taglist: [] /* kekeep-alive状态保存 */,
-    tags: [JSON.parse(localStorage.getItem('currentTag'))] /* 标签数组 */,
+    tags: [JSON.parse(getLocalStorage('currentTag'))] /* 标签数组 */,
     tabNum: null /* 同时可打开的标签数目 */,
     selectTag: JSON.parse(
-      localStorage.getItem('currentTag')
+      getLocalStorage('currentTag')
     ) /* 当前选中的标签 */,
     canAdd: true /* 是否可以继续打开标签 */
   },
@@ -50,7 +51,7 @@ export default {
       // 要打开的页面标签是否已经存在 ？ 跳转 ： 加入数组
       if (JS(state.tags).indexOf(JS(value)) < 0) {
         state.tags.push(value);
-        localStorage.setItem('tags', JS(state.tags));
+        setLocalStorage('tags', JS(state.tags));
         state.taglist.push(value.name);
       } else {
         state.selectTag = value;
@@ -67,7 +68,7 @@ export default {
       let JS = JSON.stringify;
       state.tags = [];
       state.taglist = [];
-      let oldTags = JSON.parse(localStorage.getItem('tags'));
+      let oldTags = JSON.parse(getLocalStorage('tags'));
       if (oldTags.length > 1) {
         oldTags.forEach(item => {
           if (JS(state.tags).indexOf(JS(item)) === -1) {
@@ -87,7 +88,7 @@ export default {
       if (state.tags.indexOf(value) > -1) {
         state.tags.splice(state.tags.indexOf(value), 1);
         state.taglist.splice(state.tags.indexOf(value.name), 1);
-        localStorage.setItem('tags', JSON.stringify(state.tags));
+        setLocalStorage('tags', JSON.stringify(state.tags));
         state.canAdd = true;
         // 如果当前打开的标签只有一个，则删除当前标签后应该跳转到首页标签
         if (!state.tags.length) {
@@ -98,21 +99,21 @@ export default {
     // 修改选中的tab
     selectTag (state, value) {
       state.selectTag = value;
-      localStorage.setItem('currentTag', JSON.stringify(value));
+      setLocalStorage('currentTag', JSON.stringify(value));
     },
     // 关闭其他标签
     closeOther (state) {
       state.tags = [];
       state.tags.push(state.selectTag);
-      localStorage.removeItem('tags');
-      localStorage.setItem('tags', JSON.stringify(state.selectTag));
+      deleteLocalStorage('tags');
+      setLocalStorage('tags', JSON.stringify(state.selectTag));
     },
     // 关闭所有标签
     closeAll (state) {
       state.tags = [];
       state.tags.push(state.tabIndex);
-      localStorage.removeItem('tags');
-      localStorage.setItem('tags', JSON.stringify(state.tabIndex));
+      deleteLocalStorage('tags');
+      setLocalStorage('tags', JSON.stringify(state.tabIndex));
     }
   }
 };

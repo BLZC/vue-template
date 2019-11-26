@@ -99,7 +99,7 @@ export default {
       if (len) {
         let item = this.tags[len - 1];
         this.switchTab(item);
-        localStorage.setItem('currentTag', JSON.stringify(item));
+        this.setls('currentTag', JSON.stringify(item));
       }
     },
     // 切换标签

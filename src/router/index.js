@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import charts from './module/charts';
 import editors from './module/editors';
 import { blog } from './module/blog';
+import { getLocalStorage as getls } from '../util/localStorageConfig';
 
 Vue.use(Router);
 const originalPush = Router.prototype.push;
@@ -92,7 +93,7 @@ let router = new Router({
  *  2. 根据用户权限（尚待完成）
  */
 router.beforeEach((to, from, next) => {
-  if (localStorage.getItem('user')) {
+  if (getls('user')) {
     next();
   } else {
     if (to.path === '/login') {

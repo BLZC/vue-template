@@ -56,10 +56,10 @@ export default {
               path: '/index'
             };
             //  缓存用户信息和标签初始化信息
-            localStorage.setItem('user', this.account);
+            this.$setls('user', this.account);
             this.$store.commit('initTags', initItem);
-            localStorage.setItem('currentTag', JSON.stringify(initItem));
-            localStorage.setItem('tags', JSON.stringify(initItem));
+            this.$setls('currentTag', JSON.stringify(initItem));
+            this.$setls('tags', JSON.stringify(initItem));
             setTimeout(() => {
               this.$router.push('/index');
             }, 1000);
