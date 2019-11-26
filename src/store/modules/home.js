@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage, deleteLocalStorage, clearAllLocalStorage } from '../../util/localStorageConfig';
+import config from '../../util/tagsConfig';
 export default {
   state: {
     show: true /* Side展开状态 */,
@@ -12,11 +13,9 @@ export default {
       path: '/index'
     } /* 首页标签 */,
     taglist: [] /* kekeep-alive状态保存 */,
-    tags: [JSON.parse(getLocalStorage('currentTag'))] /* 标签数组 */,
+    tags: config.tags /* 标签数组 */,
     tabNum: null /* 同时可打开的标签数目 */,
-    selectTag: JSON.parse(
-      getLocalStorage('currentTag')
-    ) /* 当前选中的标签 */,
+    selectTag: config.selectTag /* 当前选中的标签 */,
     canAdd: true /* 是否可以继续打开标签 */
   },
   mutations: {

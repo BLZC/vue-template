@@ -1,4 +1,4 @@
-import { Message } from '_element-ui@2.12.0@element-ui';
+import { Notification } from '_element-ui@2.12.0@element-ui';
 
 /**
  * message 消息封装
@@ -6,7 +6,7 @@ import { Message } from '_element-ui@2.12.0@element-ui';
  * @param {*} type
  */
 export let LZCMessage = (msg, type) => {
-  Message({
+  Notification({
     message: msg,
     type: type
   });
